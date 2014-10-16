@@ -1,5 +1,4 @@
 kde/okular/docdata
-vim/.vim/bundle/*
 **/*.pyc
 lyx/.lyx/cache
 lyx/LyX-2.0/cache
@@ -12,3 +11,7 @@ w3m
 **/.git
 **/.last_dir_entered
 **/*.cache
+vim/vim_folder/bundle/YouCompleteMe
+vim/vim_folder/bundle/syntastic
+vim/vim_folder/bundle/tern_for_vim
+
