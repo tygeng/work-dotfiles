@@ -1,0 +1,224 @@
+if !has("gui_running")
+    set t_Co=256
+else
+    let g:Powerline_symbols = 'fancy'
+    set transparency=8     
+    set guifont=Menlo\ For\ Powerline:h12
+endif
+"==========
+"" adjust configuration for such hostile environment as Windows {{{
+if has("mac") 
+    set clipboard=unnamed
+    map [A <Up>
+    map [B <Down>
+    map [D <Left>
+    map [C <Right>
+    imap [A <Up>
+    imap [B <Down>
+    imap [D <Left>
+    imap [C <Right>
+    vmap [A <Up>
+    vmap [B <Down>
+    vmap [D <Left>
+    vmap [C <Right>
+    nmap [A <Up>
+    nmap [B <Down>
+    nmap [D <Left>
+    nmap [C <Right>
+    cmap [A <Up>
+    cmap [B <Down>
+    cmap [D <Left>
+    cmap [C <Right>
+else
+    set clipboard=unnamedplus
+endif
+" set file make program according to file type. Even if vim is closed the
+" history will still be kept
+au FileType markdown set makeprg=multimarkdown\ %\ -o\ %.html
+" au FileType tex set makeprg=latexmk\ -pdfdvi\ %
+au FileType tex set makeprg=pdflatex\ -halt-on-error\ %
+inoremap <M-4> <nop>
+au FileType tex inoremap <M-4> $$<Left>
+au FileType tex inoremap <D-Space> $$<Left>
+au FileType tex inoremap <M-k> <CR>\[<CR>\]<Up><CR>
+au FileType tex inoremap <D-k> <CR>\[<CR>\]<Up><CR>
+" ctag
+set tags=./tags;/
+nnoremap gt :!ctags -R --fields=+iaS --extra=+f --exclude=.git --exclude=log *<CR>:redraw!<CR>
+noremap gb <C-t>
+noremap gd <C-]>
+function GenerateTernProjectFile()
+    if filereadable('./.tern-project') 
+        echo '.tern-project already exist!'
+    else
+        silent execute '!cp ~/.vim/templates/.tern-project ./ &' | redraw!
+        echo '.tern-project generated!'
+    endif
+endfunction
+function SetUpTernJS()
+    nnoremap gd :TernDef<CR>  
+    nnoremap gt :TernType<CR>  
+    nnoremap R :TernRename<CR>
+    nnoremap gr :TernRefs<CR>
+    nnoremap gD :TernDoc<CR>
+    nnoremap gp :call GenerateTernProjectFile()<CR>
+endfunction
+autocmd Filetype javascript call SetUpTernJS()
+"=========================
+" for pathogen
+call pathogen#helptags()
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+" NerdTree
+nnoremap t :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen=1
+let NERDTreeWinSize=48
+let NERDTreeMouseMode=3
+" YouCompleteMe
+au Filetype c,cpp,objc,objcpp,python,cs noremap gd :YcmCompleter GoTo<CR>
+au Filetype c,cpp,objc,objcpp,python,cs noremap gb <C-o>
+let g:ycm_always_populate_location_list = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" au FileType c let g:ycm_global_ycm_extra_conf = '~/.dotfiles/vim/.vim/.ycm_extra_conf_c.py'
+" au FileType objc let g:ycm_global_ycm_extra_conf = '~/.dotfiles/vim/.vim/.ycm_extra_conf_objc.py'
+let g:ycm_add_preview_to_completeopt=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:EclimCompletionMethod = 'omnifunc'
+" syntastic
+" let g:syntastic_c_checkers=['make']
+let g:syntastic_auto_loc_list=1
+let g:syntastic_enable_signs=1
+let g:syntastic_loc_list_height=5
+let g:syntastic_mode_map = { 'mode': 'active',
+            \ 'active_filetypes': ['c'],
+            \ 'passive_filetypes': ["tex"] }
+
+set statusline=%<\ %n:%f\ %m%r%y%{SyntasticStatuslineFlag()}%=(%l\ ,\ %c%V)\ Total:\ %L\ 
+" work around for the location list bug
+autocmd FileType c,cpp,objc nnoremap ZQ :lcl<bar>q!<CR>
+vmap ZQ vZQ
+autocmd FileType c,cpp,objc nnoremap ZZ :lcl<bar>w<bar>lcl<bar>q<CR>
+vmap ZZ vZZ
+" end for syntastic
+" powerline
+let g:Powerline_stl_path_style = 'relative'
+set laststatus=2
+" For Emma html
+let g:user_emmet_leader_key='<C-f>'
+let g:user_emmet_install_global = 0
+autocmd Filetype html,css,eruby,xml call SetEmmetHTML()
+function SetEmmetHTML()
+    map <C-f> <nop>
+    EmmetInstall
+    imap hh <C-f>,
+"     vmap hh <C-f>,
+    nmap s <C-f>/
+    inoremap </ </<C-x><C-o><Esc>my==`ya
+endfunction
+" for indent highlight
+set background=dark
+nmap <silent> <C-j> <Plug>IndentGuidesToggle
+autocmd FileType c,python,java,cpp,objc,ruby IndentGuidesEnable
+let g:indent_guides_auto_colors = 0
+" let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#555555  ctermbg=240
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333333   ctermbg=235
+" let g:user_emmet_settings = {
+"   \  'php' : {
+"   \    'extends' : 'html',
+"   \    'filters' : 'c',
+"   \  },
+"   \  'xml' : {
+"   \    'extends' : 'html',
+"   \  },
+"   \  'haml' : {
+"   \    'extends' : 'html',
+"   \  },
+"   \  'eruby' : {
+"   \    'extends' : 'html',
+"   \  },
+"   \}
+" Auto format
+noremap <F1> :Autoformat<CR><CR>
+" Rails-Autoformat
+autocmd Filetype ruby,scss,eruby nnoremap <silent> <F1> :silent call AutoFormatRails()<CR>
+imap <F1> <C-o><F1>
+" For DelimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+" For vim-ruby
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let ruby_fold = 1
+" let g:rubycomplete_rails = 1
+" let g:rubycomplete_load_gemfile = 1
+let ruby_operators = 1
+let ruby_space_errors = 1
+let g:ruby_indent_access_modifier_style = 'indent'
+" Tag bar
+noremap <C-t> :TagbarToggle<CR>
+" let g:tagbar_autoclose = 1
+let g:tagbar_zoomwidth = 0
+let g:tagbar_width = 30
+" CtrlP
+let g:ctrlp_map = '<C-g>'
+set wildignore+=*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_working_path_mode = 'ra'
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<C-f>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+"=========================
+" Aligh Tab
+nnoremap T :Tab /
+vnoremap T :Tab /
+
+"=========================
+" noremap <F1> mz:%!astyle --style=java -fjxpUd -k3 <CR>`z
+" imap <F1> <Esc><F1>
+"=========================
+" nnoremap <F1> :set wrap!<CR>
+" inoremap <F1> <C-o><F1>
+"=========================
+"next error for errormarker
+" let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+" nnoremap > :cn<CR>
+" nnoremap < :cp<CR>
+"=========================
+" noremap <F5> :w<CR>:silent make<CR>:redraw!<CR>
+" imap <F5> <C-o><F5>
+" nmap <A-F5> :SyntasticCheck<CR>
+" imap <A-F5> <C-o><A-F5>
+" nmap <A-F6> :SyntasticToggleMode<CR>
+" imap <A-F6> <Esc><A-F6>
+"=========================
+function SpellCorrectionModeOn()
+    if &spell
+        let s:wrongSpellStatus = spellbadword()[1]
+        if s:wrongSpellStatus == 'bad'
+            echo 'wrong spelling found'
+            call arpeggio#unmap('i', '', 'jk')
+            imap <silent> l <Right><Esc>:silent! call SpellCorrectionModeOff()<CR>
+            imap j <Down>
+            imap k <Up>
+            normal he
+            nnoremap <F13> a<C-x>s
+        else
+            echo 'No wrong spelling!'
+        endif
+    else
+        echo 'Enable spell check with <F4> first.'
+    endif
+endfunction
+function SpellCorrectionModeOff()
+    nunmap <F13>
+    iunmap l
+    iunmap j
+    iunmap k
+    silent call arpeggio#map('i', '', 0, 'jk', '<Esc>')
+endfunction
+nmap <silent> <Space> :call SpellCorrectionModeOn()<CR><F13>
+"set up color

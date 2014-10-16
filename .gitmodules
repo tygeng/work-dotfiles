@@ -1,0 +1,3 @@
+[submodule "vim/vim_folder/bundle/tern_for_vim"]
+	path = vim/vim_folder/bundle/tern_for_vim
+	url = https://github.com/marijnh/tern_for_vim.git

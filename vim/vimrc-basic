@@ -1,0 +1,152 @@
+set tw=0
+au FileType cpp,c,java,tex,text  set tw=80
+au FileType xml,html,xhtml,php,eruby so ~/.vim/ftplugin/html_autoclosing.vim
+set formatoptions=cq textwidth=80 foldignore= wildignore+=*.py[co]
+syntax sync minlines=256
+set mouse=a
+
+"=========================
+" set encoding priority
+set so=3
+set encoding=utf-8
+set fileencodings=utf-8,gb2312,gb18030,gbk,cp936,latin1,ucs-bom
+set termencoding=utf-8
+" tell it to use an undo file
+set undofile
+" set a directory to store the undo history
+set undodir=~/.vimundo/
+set undolevels=1000
+set undoreload=10000
+" remember last position
+set viminfo='10,\"100,:20,%,n~/.viminfo
+set timeoutlen=500
+"---------------------------
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+"=========================
+" set tab
+set ai nowrap nu tabstop=4 shiftwidth=4 expandtab
+au FileType ruby,html,xhtml,xml,eruby,css,php,objc set tabstop=2 shiftwidth=2
+setlocal spelllang=en_us
+set incsearch
+set smartcase ignorecase
+" =========================
+" remap keys
+" :set virtualedit=all
+call arpeggio#map('iv', '', 0, 'jk', '<Esc>')
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+vnoremap j gj
+vnoremap k gk
+vnoremap gj j
+vnoremap gk k
+
+nnoremap <C-Tab> <C-w>w
+vnoremap <C-Tab> <C-w>w
+inoremap <C-Tab> <C-w>w
+nnoremap <Right> *
+nnoremap <Left> #
+nnoremap <up> 3<c-y>
+nnoremap <down> 3<c-e>
+imap <Home> <esc>^i
+map <Home> ^
+map <c-d> <delete>
+imap <c-d> <Delete>
+nmap <C-d> <Delete>
+vmap <C-d> <Delete>
+map <C-a> <Home>
+map <C-e> <End>
+nmap <C-f> <Right>
+nmap <C-b> <Left>
+nmap <C-n> <Down>
+nmap <C-p> <Up>
+nmap <C-l> <Right>
+nmap <C-h> <Left>
+nmap <C-j> <Down>
+nmap <C-k> <Up>
+
+imap <C-a> <Home>
+imap <C-e> <End>
+inoremap <C-l> <Right>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+cnoremap <C-l> <Right>
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+noremap <C-z> <C-a>
+"=========================
+"simple comment
+noremap <silent> s :call ToggleComment()<CR>
+noremap <silent> gc :call Comment()<CR>
+noremap <silent> gu :call UnComment()<CR>
+"=========================
+"set F2 to toggle paste mode
+nnoremap <silent> <F3> :set hlsearch!<bar>echo 'highlight search '.(&hlsearch==1?'on':'off')<CR>
+imap <F3> <C-o><F3>
+set pastetoggle=<F2>
+nnoremap <silent> <F4> :set spell!<bar>echo 'spell '.(&spell==1?'on':'off')<CR>
+imap <F4>  <C-o><F4>
+set showmode
+"=========================
+"c support for jump among files
+" nmap <F7> <C-T>
+" imap <F7> <C-o><F7>
+map <S-F8> :vsp<CR>:wincmd l<CR>:exec("tag ".expand("<cword>"))<CR>:wincmd h<CR>
+nmap <F9> :w<CR>:FSHere<CR>
+imap <F9> <C-o><F9>
+map <S-F9> :w<CR>:vsp<CR>:FSRight<CR>:wincmd h<CR>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>
+vnoremap <C-s> v:w<CR>
+"=========================
+nnoremap U :redo<CR>
+nnoremap w viw
+vnoremap w e
+nnoremap W viW
+vnoremap W E
+
+"=========================
+nnoremap x "xx
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+" v_P for non swap pasting
+vnoremap P pgvy
+"=========================
+nnoremap Q <nop>
+vnoremap Q gq
+"=========================
+colorscheme molokai_mod
+set guioptions=  
+set cul
+syntax sync minlines=64
+set re=1
+" augroup vimrc_autocmds
+"   autocmd BufEnter * highlight OverLength cterm=underline gui=underline
+"   autocmd BufEnter * match OverLength /\%81v./
+" augroup END
+
+autocmd InsertEnter * set nocul
+autocmd InsertLeave * set cul
+"=======================
+set backspace=indent,eol,start
+set foldmethod=syntax
+set foldnestmax=2      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+nnoremap R :%s/\<<C-r><C-w>\>//g<Left><Left>
+vmap R *N:%s///g<Left><Left>
+vmap <Right> *
+vmap <Left> #

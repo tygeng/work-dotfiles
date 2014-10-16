@@ -1,0 +1,37 @@
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+   alias ls='ls --color=auto'
+   alias ll='ls --color=auto -l'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   platform='mac'
+   alias ls='ls -G'
+   alias ll='ls -G -l'
+   alias go=open
+   alias gvim='mvim -c "set guifont=Menlo:h12"'
+   alias vim='mvim -v'
+
+
+   bindkey 'OH' beginning-of-line
+   bindkey 'OF' end-of-line
+
+   bindkey  '^[[5~'    history-beginning-search-backward
+   bindkey  '^[[6~'  history-beginning-search-forward
+fi
+
+source ~/.dotfiles/zsh/zsh-common
+
+#export LANG=C
+
+# zsh completion
+
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+        export TERM='xterm-256color'
+else
+        export TERM='xterm-color'
+fi
+
+export LSCOLORS=exgxcxdxcxegedcaCaacad
+
+
