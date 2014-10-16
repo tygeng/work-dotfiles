@@ -21,12 +21,12 @@ mkdir ~/.vimundo
 
 cd ~/.vim/bundle
 
-git submodule add https://github.com/marijnh/tern_for_vim.git
-git submodule add https://github.com/Valloric/YouCompleteMe.git
+git clone https://github.com/marijnh/tern_for_vim.git
+git clone https://github.com/Valloric/YouCompleteMe.git
 cd YouCompleteMe
 git submodule update --init --recursive
 ./install.sh
 cd ..
-git submodule add https://github.com/scrooloose/syntastic.git
+git clone https://github.com/scrooloose/syntastic.git
 cd ~
 
