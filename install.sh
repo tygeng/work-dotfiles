@@ -1,6 +1,6 @@
 cd ~
 rm -rf .dotfiles
-git clone git@github.com:tygeng/work-dotfiles.git
+git clone https://github.com/tygeng/work-dotfiles.git
 mv work-dotfiles .dotfiles
 rmdir ~/.vim
 rmdir ~/.zsh
