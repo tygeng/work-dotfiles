@@ -82,11 +82,23 @@ bindkey '^G' per-directory-history-toggle-history
 # implementation details
 #-------------------------------------------------------------------------------
 
-_per_directory_history_directory="$HISTORY_BASE${PWD:A}/history"
+function hist_dir(){
+tokens_string=$result`echo ${PWD:A}|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/\?\(.*\)/\1 \2 \3/'`
+eval "tokens=($tokens_string)"
+if [ -n "${tokens[2]}" ]; then
+    HIST_DIR="/${tokens[3]}"
+else
+    HIST_DIR=${PWD:A}
+fi
+print $HIST_DIR
+}
+
+_per_directory_history_directory="$HISTORY_BASE$(hist_dir)/history"
 
 function _per-directory-history-change-directory() {
-  _per_directory_history_directory="$HISTORY_BASE${PWD:A}/history"
+  _per_directory_history_directory="$HISTORY_BASE$(hist_dir)/history"
   mkdir -p ${_per_directory_history_directory:h}
+  echo `pwd` > ~/.current_pwd
   if [[ $_per_directory_history_is_global == false ]]; then
     #save to the global history
     fc -AI $HISTFILE

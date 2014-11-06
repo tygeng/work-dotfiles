@@ -1,9 +1,9 @@
 if !has("gui_running")
     set t_Co=256
 else
-    let g:Powerline_symbols = 'fancy'
-    set transparency=8     
-    set guifont=Menlo\ For\ Powerline:h12
+"     let g:Powerline_symbols = 'fancy'
+"     set transparency=8     
+"     set guifont=Menlo\ For\ Powerline:h12
 endif
 "==========
 "" adjust configuration for such hostile environment as Windows {{{
@@ -140,8 +140,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333333   ctermbg=235
 "   \    'extends' : 'html',
 "   \  },
 "   \}
-" Auto format
-noremap <F1> :Autoformat<CR><CR>
 " Rails-Autoformat
 autocmd Filetype ruby,scss,eruby nnoremap <silent> <F1> :silent call AutoFormatRails()<CR>
 imap <F1> <C-o><F1>
@@ -220,5 +218,5 @@ function SpellCorrectionModeOff()
     iunmap k
     silent call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 endfunction
-nmap <silent> <Space> :call SpellCorrectionModeOn()<CR><F13>
+nmap <silent> <Backspace> :call SpellCorrectionModeOn()<CR><F13>
 "set up color

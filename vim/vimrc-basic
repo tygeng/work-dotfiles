@@ -67,10 +67,10 @@ nmap <C-d> <Delete>
 vmap <C-d> <Delete>
 map <C-a> <Home>
 map <C-e> <End>
-nmap <C-f> <Right>
-nmap <C-b> <Left>
-nmap <C-n> <Down>
-nmap <C-p> <Up>
+" nmap <C-f> <Right>
+" nmap <C-b> <Left>
+" nmap <C-n> <Down>
+" nmap <C-p> <Up>
 nmap <C-l> <Right>
 nmap <C-h> <Left>
 nmap <C-j> <Down>
@@ -150,3 +150,5 @@ nnoremap R :%s/\<<C-r><C-w>\>//g<Left><Left>
 vmap R *N:%s///g<Left><Left>
 vmap <Right> *
 vmap <Left> #
+nnoremap <space> za
+nmap <M-a> ggVGy

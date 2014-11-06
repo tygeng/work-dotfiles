@@ -20,8 +20,30 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
    bindkey  '^[[6~'  history-beginning-search-forward
 fi
 
-source ~/.dotfiles/zsh/zsh-common
+jsonb() {
+    for file in $@; do
+        echo $file
+        cat $file | python -m json.tool > $file.beautiful && mv -f $file.beautiful $file
+        if [[ -f $file.beautiful ]]; then
+            rm $file.beautiful
+        fi
+    done
+}
 
+source ~/.dotfiles/zsh/zsh-common
+function custom_pwd () {
+    tokens_string=$result`echo $PWD|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/google3\/\?\(.*\)/\1 \2 \3/'`
+    eval "tokens=($tokens_string)"
+    if [ -n "${tokens[2]}" ]; then
+        result="%{$fg_bold[blue]%}${tokens[1]}%{$reset_color%}(%{$fg_bold[magenta]%}${tokens[2]}%{$reset_color%}) google3: %{$fg_bold[yellow]%}//${tokens[3]}"
+    else
+        result=$PWD
+    fi
+print $result
+}
+PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) 
+%{$fg_bold[cyan]%}>>> %{$reset_color%}'
+setopt promptsubst
 #export LANG=C
 
 # zsh completion
@@ -34,4 +56,55 @@ fi
 
 export LSCOLORS=exgxcxdxcxegedcaCaacad
 
+# no need to re-parse for completition
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
+source /etc/bash_completion.d/g4d
+
+source ~/.local/bin/bashmarks.sh
+
+cd `cat ~/.current_pwd`
+
+cdg() {
+    cd `echo $PWD |  sed 's/\(^.*google3\).*/\1/'`
+}
+
+alias cd=cl
+g4dmod(){
+g4d $@ && echo `pwd` > ~/.current_pwd
+}
+alias g4d=g4dmod
+alias cdj='cd /usr/local/google/users/tgeng/magicjar'
+
+alias vex=/home/build/static/projects/vex/vex
+alias orgconsole=/google/data/ro/projects/hr/db/bin/console
+
+
+pathto(){
+    for file in $@; do
+        echo $PWD/$file
+    done
+}
+alias todo='vim ~/todo'
+
+sj(){
+    if [[ $PWD =~ \/javatests\/ ]]; then
+        newPWD=`echo $PWD | sed -r 's/\/javatests\//\/java\//'`
+        if [ -d "$newPWD" ]; then
+            cd $newPWD
+        else
+            echo "Corresponding java directory doesn't exist. Created for you."
+            mkdir -p $newPWD && cd $newPWD || echo Cannot create directory $newPWD
+        fi
+    elif [[ $PWD =~ \/java\/ ]]; then
+        newPWD=`echo $PWD | sed -r 's/\/java\//\/javatests\//'`
+        if [ -d "$newPWD" ]; then
+            cd $newPWD
+        else
+            echo "Corresponding javatests directory doesn't exist. Created for you."
+            mkdir -p $newPWD && cd $newPWD || echo Cannot create directory $newPWD
+        fi
+    fi
+    newPWD=''
+}

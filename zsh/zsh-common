@@ -50,7 +50,6 @@ autoload -U compinit promptinit
 compinit
 promptinit
 setopt auto_pushd pushd_ignore_dups
-PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}%~%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
 # PS1="%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}%~%{$fg[green]%} $%{$reset_color%} "
 # PS1="[%{$fg_bold[green]%}%T%{$reset_color%}] %{$fg_bold[yellow]%}%~%{$fg[green]%} $%{$fg[red]%} "
 HISTFILE=$HOME/.zhistory
@@ -79,17 +78,8 @@ um()
 {
     udisks --unmount /dev/sd$1
 }
-cdlast() {
-    cd "`cat ~/.current_pwd`"
-    ls
-}
 cl() {
-#     if [[ -d "./$*" ]] && ! [[ "$*" =~ '^\.*\/+.*' ]]; then
-#         echo $* > ./$LAST_DIR_FILE
-#     fi
-    cd $*
-    ls .
-    echo `pwd` > ~/.current_pwd
+    cd $* && ls . 
 }
 alias vimdiff='vim -d'
 alias cddl='cl $BASE_DIR'
