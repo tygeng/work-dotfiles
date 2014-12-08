@@ -37,12 +37,11 @@ function custom_pwd () {
     if [ -n "${tokens[2]}" ]; then
         result="%{$fg_bold[blue]%}${tokens[1]}%{$reset_color%}(%{$fg_bold[magenta]%}${tokens[2]}%{$reset_color%}) google3: %{$fg_bold[yellow]%}//${tokens[3]}"
     else
-        result=$PWD
+        result="%~"
     fi
 print $result
 }
-PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) 
-%{$fg_bold[cyan]%}>>> %{$reset_color%}'
+PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
 setopt promptsubst
 #export LANG=C
 
@@ -71,14 +70,11 @@ cdg() {
 }
 
 alias cd=cl
-g4dmod(){
-g4d $@ && echo `pwd` > ~/.current_pwd
-}
-alias g4d=g4dmod
 alias cdj='cd /usr/local/google/users/tgeng/magicjar'
 
 alias vex=/home/build/static/projects/vex/vex
 alias orgconsole=/google/data/ro/projects/hr/db/bin/console
+alias open=gnome-open
 
 
 pathto(){
@@ -108,3 +104,14 @@ sj(){
     fi
     newPWD=''
 }
+
+
+meldsub() {
+meld /google/src/cloud/tgeng/{$2,$3}/google3/java/$1 &
+meld /google/src/cloud/tgeng/{$2,$3}/google3/javatests/$1 &
+}
+
+'='() {
+calc $@
+}
+alias msgbus=/google/data/ro/projects/corpmb/msgbus
