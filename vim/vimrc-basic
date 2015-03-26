@@ -131,7 +131,7 @@ colorscheme molokai_mod
 set guioptions=  
 set cul
 syntax sync minlines=64
-set re=1
+set regexpengine=1
 " augroup vimrc_autocmds
 "   autocmd BufEnter * highlight OverLength cterm=underline gui=underline
 "   autocmd BufEnter * match OverLength /\%81v./

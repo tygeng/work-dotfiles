@@ -41,8 +41,7 @@ function custom_pwd () {
     fi
 print $result
 }
-PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) 
-%{$fg_bold[cyan]%}>>> %{$reset_color%}'
+PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}%~%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
 setopt promptsubst
 #export LANG=C
 
@@ -60,9 +59,7 @@ export LSCOLORS=exgxcxdxcxegedcaCaacad
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
-source /etc/bash_completion.d/g4d
-
-source ~/.local/bin/bashmarks.sh
+source ~/bin/bashmarks.sh
 
 cd `cat ~/.current_pwd`
 
@@ -108,3 +105,8 @@ sj(){
     fi
     newPWD=''
 }
+
+alias nemo='nemo --no-desktop'
+alias cdd='cd ~/Dropbox'
+stty -ixon
+

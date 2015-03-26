@@ -1,18 +1,3 @@
 source ~/.dotfiles/vim/vimrc-advanced
 source ~/.dotfiles/vim/vimrc-basic
-source /usr/share/vim/google/google.vim 
-Glug magic
-Glug blaze
-Glug blazedeps
-Glug codefmt
-nnoremap <C-s> :FormatCode<CR>: w<CR>
-inoremap <C-s> <Esc>:FormatCode<CR>: w<CR>a
-Glug easygoogle
-Glug findinc
-Glug ft-proto
-Glug ft-python
-Glug google-filetypes
-Glug googlepaths
-Glug googlestyle
-Glug syntastic-google
-Glug youcompleteme-google
+au BufRead,BufNewFile *.json set filetype=json
