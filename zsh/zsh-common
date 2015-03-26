@@ -41,7 +41,7 @@ source $BASE_DIR/.dotfiles/zsh/oh-my-zsh/plugins/per-directory-history/per-direc
 # bindkey 'n' go-down-dir-action
 # RPROMPT='%{$fg_no_bold[blue]%}`[[ -f $LAST_DIR_FILE ]] && cat $LAST_DIR_FILE`%{$reset_color%}'
 # -------- Git Prompt
-source $BASE_DIR/.dotfiles/zsh/zsh/git-prompt/zshrc.sh
+source $BASE_DIR/.dotfiles/zsh/.zsh/git-prompt/zshrc.sh
 # ========= about completition
 setopt extendedglob auto_list auto_param_slash auto_remove_slash
 setopt completealiases

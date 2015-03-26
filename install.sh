@@ -1,7 +1,4 @@
 cd ~
-rm -rf .dotfiles
-git clone https://github.com/tygeng/work-dotfiles.git
-mv work-dotfiles .dotfiles
 rmdir ~/.vim
 rmdir ~/.zsh
 rm ~/.vimrc
@@ -9,13 +6,14 @@ rm ~/.zshrc
 ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 
-if [[ "$unamestr" == 'Linux' ]]; then
-    ln -sd ~/.dotfiles/zsh/zsh ~/.zsh
-    ln -sd ~/.dotfiles/vim/vim_folder ~/.vim
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    ln -s ~/.dotfiles/zsh/zsh ~/.zsh
-    ln -s ~/.dotfiles/vim/vim_folder ~/.vim
-fi
+    ln -sd ~/.dotfiles/zsh/.zsh ~/.zsh
+    ln -sd ~/.dotfiles/vim/.vim ~/.vim
+    ln -s ~/.dotfiles/.Xmodmap ~/.Xmodmap
+    ln -s ~/.dotfiles/.compton.conf ~/.compton.conf
+    ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+    ln -sd ~/.dotfiles/bin ~/bin
+    ln -sd ~/.dotfiles/i3/.i3 ~/.i3
+    ln -s ~/.dotfiles/i3/.i3status.conf ~/.i3status.conf
 
 mkdir ~/.vimundo
 
