@@ -1,0 +1,23 @@
+#!/bin/bash
+# the file should reside in /etc/pm/sleep.d/00-keyboard
+case $1 in
+  hibernate)
+    # Going to suspend to disk
+    ;;
+  suspend)
+    # Going to suspend to RAM
+    ;;
+  thaw)
+    # Resuming after hibernating
+    echo "Restoring keyboard settings..."
+    sh -c "sleep 2; /home/tg/bin/kbd" &
+    ;;
+  resume)
+    # Resuming after suspending
+    echo "Restoring keyboard settings..."
+    sh -c "sleep 2; /home/tg/bin/kbd" &
+    ;;
+  *)
+    echo "Something went wrong"
+    ;;
+esac

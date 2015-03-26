@@ -1,0 +1,4 @@
+# resides in /etc/udev/rules.d/90-keyboardwakeup.rules
+echo enabled > /sys/bus/usb/devices/usb3/power/wakeup
+echo enabled > /sys/bus/usb/devices/3-2.3/power/wakeup
+
