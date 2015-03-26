@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/local/MATLAB/R2013a/bin/matlab -nodisplay
