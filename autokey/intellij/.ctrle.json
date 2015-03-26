@@ -1,8 +1,8 @@
 {
-    "usageCount": 9, 
+    "usageCount": 0, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "end", 
+    "description": "ctrl+e", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 
@@ -23,7 +23,7 @@
     "showInTrayMenu": false, 
     "matchCase": false, 
     "filter": {
-        "regex": "Google-chrome-stable.Google-chrome-stable", 
+        "regex": "Focus-Proxy-Window.FocusProxy", 
         "isRecursive": false
     }, 
     "type": "phrase", 
