@@ -24,7 +24,7 @@
     "showInTrayMenu": false, 
     "matchCase": false, 
     "filter": {
-        "regex": "Google-chrome-stable.Google-chrome-stable", 
+        "regex": ".*Google-chrome-stable", 
         "isRecursive": false
     }, 
     "type": "phrase", 
