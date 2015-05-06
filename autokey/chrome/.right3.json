@@ -1,8 +1,8 @@
 {
-    "usageCount": 1, 
+    "usageCount": 0, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "back", 
+    "description": "right", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 
@@ -12,9 +12,10 @@
         "triggerInside": false
     }, 
     "hotkey": {
-        "hotKey": "h", 
+        "hotKey": "l", 
         "modifiers": [
-            "<alt>"
+            "<alt>", 
+            "<ctrl>"
         ]
     }, 
     "modes": [
