@@ -14,10 +14,11 @@ ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
     ln -sd ~/.dotfiles/bin ~/bin
     ln -sd ~/.dotfiles/i3/.i3 ~/.i3
     ln -s ~/.dotfiles/i3/.i3status.conf ~/.i3status.conf
+    xrdb -merge ~/.dotfiles/i3/.xresources
 
 mkdir ~/.vimundo
 
-cd ~/.vim/bundle
+cd ~/.vim/bundle || (echo 'Cannot cd to ~/.vim/bundle. Will exit' && exit)
 
 git clone https://github.com/marijnh/tern_for_vim.git
 git clone https://github.com/Valloric/YouCompleteMe.git
