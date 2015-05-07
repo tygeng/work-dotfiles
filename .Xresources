@@ -65,5 +65,16 @@
 ! --- end of terminal colors section -------------------------------------------
 ! ------------------------------------------------------------------------------
 
-URxvt.font: xft:Monospace:size=12
 URxvt.scrollBar: false
+
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+
+! -- Fonts -- !
+URxvt.font: xft:Monospace:size=12
+URxvt.boldfont:xft:Monospace-Bold:size=12
+URxvt.letterSpace: -1
