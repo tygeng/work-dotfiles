@@ -1,1 +1,0 @@
-_blaze_cmd_list=( 'analyze' 'analyze-profile' 'build' 'buildlint' 'canonicalize-flags' 'clean' 'coverage' 'doc_ext' 'dump' 'help' 'ide_build_info' 'info' 'javahotswap' 'menu' 'mpm' 'preprocess' 'print_action' 'query' 'rm' 'run' 'shutdown' 'test' 'version' )
