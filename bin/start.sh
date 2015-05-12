@@ -1,3 +1,4 @@
+#!/bin/bash
 pacmd set-default-sink 0
 
 # Desktop environment
@@ -25,3 +26,7 @@ synclient ClickFinger3=3
 synclient TapButton3=3
 synclient TapButton2=2
 synclient SingleTapTimeout=50
+
+if hash sogou-qimpanel; then
+    sogou-qimpanel
+fi
