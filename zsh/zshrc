@@ -61,13 +61,22 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 source ~/bin/bashmarks.sh
 
+
+# Use ADB turbo whenever possible - otherwise fallback to standard adb.
+function adb() {
+  EMU_DEPS=/google/data/ro/teams/mobile_eng_prod/emu/live/google3/
+  ANDROID_SDK=${EMU_DEPS}/third_party/java/android/android_sdk_linux/
+  EMU_SUPPORT=${EMU_DEPS}/tools/android/emulator/support/
+  ANDROID_ADB=${ANDROID_SDK}/platform-tools/adb 
+  ANDROID_ADB=${ANDROID_ADB} $EMU_SUPPORT/adb.turbo "$@"
+}
+
 cd `cat ~/.current_pwd`
 
 cdg() {
     cd `echo $PWD |  sed 's/\(^.*google3\).*/\1/'`
 }
-
-alias cd=cl
+# alias cd=cl
 alias cdj='cd /usr/local/google/users/tgeng/magicjar'
 
 alias vex=/home/build/static/projects/vex/vex
@@ -117,3 +126,9 @@ meld /google/src/cloud/tgeng/{$2,$3}/google3/javatests/$1 &
 calc $@
 }
 alias msgbus=/google/data/ro/projects/corpmb/msgbus
+alias jade='/google/data/ro/teams/jade/jade'
+alias fido='/google/src/head/depot/google3/caribou/localconfig/eclipse/tools/fido/fido.sh'
+alias mysqlg=/google/data/ro/projects/speckle/mysql
+
+# for the g4d autocomplete
+source /etc/bash_completion.d/g4d
