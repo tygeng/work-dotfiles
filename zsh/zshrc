@@ -116,4 +116,7 @@ meld /google/src/cloud/tgeng/{$2,$3}/google3/javatests/$1 &
 '='() {
 calc $@
 }
-alias msgbus=/google/data/ro/projects/corpmb/msgbus
+# source /etc/bash_completion.d/virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+. /usr/local/bin/virtualenvwrapper.sh
+export PYTHONPATH=/home/tg/python-deps/
