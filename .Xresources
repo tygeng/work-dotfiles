@@ -1,0 +1,80 @@
+! --- ~/.Xresources ------------------------------------------------------------
+! ------------------------------------------------------------------------------
+! --- generated with 4bit Terminal Color Scheme Designer -----------------------
+! ------------------------------------------------------------------------------
+! --- http://ciembor.github.com/4bit -------------------------------------------
+! ------------------------------------------------------------------------------
+
+! --- special colors ---
+
+*background: #000000
+*foreground: #ffffff
+
+! --- standard colors ---
+
+! black
+*color0: #000000
+
+! bright_black
+*color8: #373737
+
+! red
+*color1: #f52424
+
+! bright_red
+*color9: #f86a6a
+
+! green
+*color2: #24f524
+
+! bright_green
+*color10: #6af86a
+
+! yellow
+*color3: #f5f524
+
+! bright_yellow
+*color11: #f8f86a
+
+! blue
+*color4: #2424f5
+
+! bright_blue
+*color12: #6a6af8
+
+! magenta
+*color5: #f524f5
+
+! bright_magenta
+*color13: #f86af8
+
+! cyan
+*color6: #24f5f5
+
+! bright_cyan
+*color14: #6af8f8
+
+! white
+*color7: #cacaca
+
+! bright_white
+*color15: #ffffff
+
+
+! ------------------------------------------------------------------------------
+! --- end of terminal colors section -------------------------------------------
+! ------------------------------------------------------------------------------
+
+URxvt.scrollBar: false
+
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+
+! -- Fonts -- !
+URxvt.font: xft:Monospace:size=12
+URxvt.boldfont:xft:Monospace-Bold:size=12
+URxvt.letterSpace: -1

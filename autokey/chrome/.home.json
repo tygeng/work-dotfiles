@@ -1,5 +1,5 @@
 {
-    "usageCount": 0, 
+    "usageCount": 5, 
     "omitTrigger": false, 
     "prompt": false, 
     "description": "home", 
@@ -23,7 +23,7 @@
     "showInTrayMenu": false, 
     "matchCase": false, 
     "filter": {
-        "regex": "Google-chrome-stable.Google-chrome-stable", 
+        "regex": ".*Google-chrome-stable", 
         "isRecursive": false
     }, 
     "type": "phrase", 

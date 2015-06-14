@@ -10,12 +10,13 @@ case $1 in
   thaw)
     # Resuming after hibernating
     echo "Restoring keyboard settings..."
-    sh -c "sleep 2; /home/tg/bin/kbd" &
+    sh -c "sleep 1; /home/tgeng/bin/kbd" &
     ;;
   resume)
     # Resuming after suspending
     echo "Restoring keyboard settings..."
-    sh -c "sleep 2; /home/tg/bin/kbd" &
+    sh -c "sleep 1; /home/tgeng/bin/kbd" &
+    echo "hello world" > ~/tmp/resumed
     ;;
   *)
     echo "Something went wrong"
