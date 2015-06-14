@@ -28,6 +28,7 @@ floating_modifier $mod
 
 # kill focused window
 bindsym Mod1+q kill
+bindsym Mod1+Tab focus left
 bindsym $mod+F2 exec ~/bin/dpms_toggle
 exec autokey-gtk
 exec feh --bg-fill ~/Pictures/wallpaper.jpg

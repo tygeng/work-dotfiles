@@ -12,7 +12,7 @@ git annex assistant --autostart
 # Cleanup unnecessary files
 rm -rf $HOME/.local/share/Trash
 
-sleep 5 && xset r rate 250 75
+sleep 5 && ~/bin/kbd
 xinput disable "SynPS/2 Synaptics TouchPad"
 xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Velocity Scaling" 250
 xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Profile" 2
