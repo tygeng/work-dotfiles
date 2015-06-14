@@ -1,3 +1,4 @@
+#!/bin/bash
 pacmd set-default-sink 0
 
 # Desktop environment
@@ -13,7 +14,7 @@ git annex assistant --autostart
 rm -rf $HOME/.local/share/Trash
 
 sleep 5 && ~/bin/kbd
-xinput disable "SynPS/2 Synaptics TouchPad"
+# xinput disable "SynPS/2 Synaptics TouchPad"
 xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Velocity Scaling" 250
 xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Profile" 2
 
@@ -25,3 +26,7 @@ synclient ClickFinger3=3
 synclient TapButton3=3
 synclient TapButton2=2
 synclient SingleTapTimeout=50
+
+if hash sogou-qimpanel; then
+    sogou-qimpanel
+fi
