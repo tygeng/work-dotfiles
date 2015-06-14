@@ -125,17 +125,7 @@ meld /google/src/cloud/tgeng/{$2,$3}/google3/javatests/$1 &
 '='() {
 calc $@
 }
-<<<<<<< HEAD
 # source /etc/bash_completion.d/virtualenvwrapper
 export WORKON_HOME=~/.virtualenvs
 . /usr/local/bin/virtualenvwrapper.sh
 export PYTHONPATH=/home/tg/python-deps/
-=======
-alias msgbus=/google/data/ro/projects/corpmb/msgbus
-alias jade='/google/data/ro/teams/jade/jade'
-alias fido='/google/src/head/depot/google3/caribou/localconfig/eclipse/tools/fido/fido.sh'
-alias mysqlg=/google/data/ro/projects/speckle/mysql
-
-# for the g4d autocomplete
-source /etc/bash_completion.d/g4d
->>>>>>> master
