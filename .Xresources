@@ -79,3 +79,5 @@ URxvt.font: xft:Monospace:size=12
 URxvt.boldfont:xft:Monospace-Bold:size=12
 URxvt.letterSpace: -2
 
+URxvt.depth: 32
+URxvt.background: [80]#000000

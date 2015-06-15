@@ -485,3 +485,4 @@
 1	google3/java/com/google/corp/bizapps/rews/campus/server/pipeline/tiler/asset/techstop.svg
 1	google3/corp/bizapps/rews/campus/common/model/place.proto
 1	google3/corp/bizapps/rews/campus/common/model/place.proto
+1	google3/corp/bizapps/rews/campus/common/model/place.proto

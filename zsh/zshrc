@@ -129,3 +129,6 @@ alias msgbus=/google/data/ro/projects/corpmb/msgbus
 alias jade='/google/data/ro/teams/jade/jade'
 alias fido='/google/src/head/depot/google3/caribou/localconfig/eclipse/tools/fido/fido.sh'
 alias mysqlg=/google/data/ro/projects/speckle/mysql
+
+# for the g4d autocomplete
+source /etc/bash_completion.d/g4d
