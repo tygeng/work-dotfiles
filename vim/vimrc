@@ -1,6 +1,6 @@
 source ~/.dotfiles/vim/vimrc-advanced
 source ~/.dotfiles/vim/vimrc-basic
-source /usr/share/vim/google/google.vim 
+source /usr/share/vim/google/google.vim
 Glug magic
 Glug blaze
 Glug blazedeps

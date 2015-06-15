@@ -40,10 +40,9 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # bindsym XF86ScreenSaver exec sudo pm-suspend
-# bindsym Pause exec sudo pm-suspend
+bindsym Pause exec i3lock -d
 bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
 bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
-bindsym Pause exec ~/bin/kbd
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock & suspend respectively
 bindsym XF86ScreenSaver exec --no-startup-id i3lock
@@ -71,7 +70,7 @@ for_window [title="^Yakuake"] floating enable
 for_window [title="^DDD"] floating enable
 assign [title="DDD"] 4
 for_window [class="^Google-chrome" ] border none
-for_window [title="^Hangout" ] border 1pixel floating enable move absolute position 1600 px 600 px
+for_window [title="^Hangout" ] border 1pixel floating enable move absolute position 1940 px 700 px
 for_window [title="^MATLAB$" ] border none floating enable
 for_window [class="Firefox$" ] border none
 for_window [title="^Terminal$" ] border 1pixel
