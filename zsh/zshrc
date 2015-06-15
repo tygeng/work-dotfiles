@@ -131,4 +131,4 @@ alias fido='/google/src/head/depot/google3/caribou/localconfig/eclipse/tools/fid
 alias mysqlg=/google/data/ro/projects/speckle/mysql
 
 # for the g4d autocomplete
-source /etc/bash_completion.d/g4d
+# source /etc/bash_completion.d/g4d

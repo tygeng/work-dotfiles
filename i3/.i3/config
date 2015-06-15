@@ -32,6 +32,7 @@ bindsym $mod+F2 exec ~/bin/dpms_toggle
 exec autokey-gtk
 exec feh --bg-fill ~/Pictures/wallpaper.jpg
 exec compton
+exec ~/bin/kbd
 # exec kupfer
 exec synapse
 exec TERM=screen-256color-bce guake
@@ -41,8 +42,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # bindsym XF86ScreenSaver exec sudo pm-suspend
 # bindsym Pause exec sudo pm-suspend
-bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
-bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
+bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com -Y
+bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com -Y
 bindsym Pause exec ~/bin/kbd
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock & suspend respectively
@@ -176,7 +177,7 @@ bindsym Mod4+Control+l resize grow   right 5 px or 5 ppt
 # finds out, if available)
 bar {
         status_command i3status
-        font pango:DejaVu Sans Mono 11
+        font pango:DejaVu Sans Mono 9
 }
 
 exec ~/bin/start.sh
