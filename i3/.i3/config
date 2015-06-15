@@ -71,7 +71,7 @@ for_window [title="^Yakuake"] floating enable
 for_window [title="^DDD"] floating enable
 assign [title="DDD"] 4
 for_window [class="^Google-chrome" ] border none
-for_window [title="^Hangout" ] border 1pixel floating enable move absolute position 1940 px 700 px
+for_window [title="^Hangout" ] border 1pixel floating enable move absolute position 1920 px 700 px
 for_window [title="^MATLAB$" ] border none floating enable
 for_window [class="Firefox$" ] border none
 for_window [title="^Terminal$" ] border 1pixel
@@ -128,6 +128,18 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+workspace 1 output DVI-I-1
+workspace 2 output DVI-I-1
+workspace 3 output DVI-I-1
+workspace 4 output DVI-I-1
+workspace 5 output DVI-I-1
+
+workspace 6 output DP-1
+workspace 7 output DP-1
+workspace 8 output DP-1
+workspace 9 output DP-1
+workspace 10 output DP-1
 
 # switch to workspace
 bindsym $mod+1 workspace 1
