@@ -28,6 +28,7 @@ floating_modifier $mod
 
 # kill focused window
 bindsym Mod1+q kill
+bindsym Mod1+Tab focus left
 bindsym $mod+F2 exec ~/bin/dpms_toggle
 exec autokey-gtk
 exec feh --bg-fill ~/Pictures/wallpaper.jpg
@@ -51,8 +52,8 @@ bindsym XF86Sleep exec --no-startup-id i3lock && dbus-send --system --dest=org.f
 
 # Fetch an OTP via bluetooth using Win+Grave
 bindsym $mod+grave exec --no-startup-id fetchotp -x
-bindsym $mod+Return split h; exec i3-sensible-terminal
-bindsym $mod+Shift+Return split v; exec i3-sensible-terminal
+bindsym $mod+Return split h; exec urxvt
+bindsym $mod+Shift+Return split v; exec urxvt
 for_window [class="Guake"] floating enable border 1pixel
 for_window [instance="desktop-ssh"] border none
 for_window [title="^Application Finder"] floating enable

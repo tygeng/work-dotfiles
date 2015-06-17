@@ -77,4 +77,5 @@ Xft.hintstyle:  hintfull
 ! -- Fonts -- !
 URxvt.font: xft:Monospace:size=12
 URxvt.boldfont:xft:Monospace-Bold:size=12
-URxvt.letterSpace: -1
+URxvt.letterSpace: -2
+
