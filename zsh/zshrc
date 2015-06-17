@@ -129,3 +129,4 @@ calc $@
 export WORKON_HOME=~/.virtualenvs
 . /usr/local/bin/virtualenvwrapper.sh
 export PYTHONPATH=/home/tg/python-deps/
+alias sync-ev3='rsync -rh --progress . 10.89.51.88:`basename $PWD`'
