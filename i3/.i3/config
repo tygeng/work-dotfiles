@@ -29,21 +29,20 @@ floating_modifier $mod
 # kill focused window
 bindsym Mod1+q kill
 bindsym Mod1+Tab focus left
-bindsym $mod+F2 exec ~/bin/dpms_toggle
 exec autokey-gtk
 exec feh --bg-fill ~/Pictures/wallpaper.jpg
 exec compton
 # exec kupfer
 exec synapse
 exec TERM=screen-256color-bce guake
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym $mod+equal exec amixer -q set Master 2dB+ unmute
+bindsym $mod+minus exec amixer -q set Master 2dB- unmute
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # bindsym XF86ScreenSaver exec sudo pm-suspend
 bindsym Pause exec i3lock -d
-bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
-bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
+# bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
+# bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock & suspend respectively
 bindsym XF86ScreenSaver exec --no-startup-id i3lock
@@ -53,6 +52,7 @@ bindsym XF86Sleep exec --no-startup-id i3lock && dbus-send --system --dest=org.f
 bindsym $mod+grave exec --no-startup-id fetchotp -x
 bindsym $mod+Return split h; exec urxvt
 bindsym $mod+Shift+Return split v; exec urxvt
+for_window [window_role="pop-up"] floating enable
 for_window [class="Guake"] floating enable border 1pixel move absolute position 0px 0px
 for_window [instance="desktop-ssh"] border none
 for_window [title="^Application Finder"] floating enable
@@ -68,10 +68,14 @@ for_window [title="^Volume Control"] floating enable
 for_window [title="^swing"] floating enable
 for_window [title="^xfce4-notifyd$"] floating enable border none
 for_window [title="^Yakuake"] floating enable
-for_window [title="^DDD"] floating enable
-assign [title="DDD"] 4
 for_window [class="^Google-chrome" ] border none
-for_window [title="^Hangout" ] border 1pixel floating enable move absolute position 1920 px 700 px
+for_window [title="^Hangout" ] border 1pixel move absolute position 1920 px 700 px
+for_window [title="^Inbox" ] floating disable
+assign [title="^Inbox"] → 21:Inbox
+for_window [title="Calendar$" ] floating disable 
+assign [title="Calendar$"] → 20:Calendar
+for_window [title="Google Docs$" ] floating disable
+for_window [title="Cider$" ] floating disable
 for_window [title="^MATLAB$" ] border none floating enable
 for_window [class="Firefox$" ] border none
 for_window [title="^Terminal$" ] border 1pixel
@@ -79,6 +83,7 @@ for_window [title="^WPS" ] border none
 for_window [title="^synapse" ] border none
 for_window [title="^Page\(s\) Unresponsive" ] floating enable
 for_window [class="jetbrains-idea.*" ] border none
+for_window [class="studio.*" ] border none
 
 assign [class="Gmusicbrowser"] 9
 
@@ -113,12 +118,13 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
+bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+Ctrl+space border toggle
 
 # change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle
@@ -134,12 +140,25 @@ workspace 2 output DVI-I-1
 workspace 3 output DVI-I-1
 workspace 4 output DVI-I-1
 workspace 5 output DVI-I-1
+workspace 6 output DVI-I-1
+workspace 7 output DVI-I-1
+workspace 8 output DVI-I-1
+workspace 9 output DVI-I-1
+workspace 10:Critique output DVI-I-1
+workspace Temp output DVI-I-1
 
-workspace 6 output DP-1
-workspace 7 output DP-1
-workspace 8 output DP-1
-workspace 9 output DP-1
-workspace 10 output DP-1
+workspace 11 output DP-1
+workspace 12 output DP-1
+workspace 13 output DP-1
+workspace 14 output DP-1
+workspace 15 output DP-1
+workspace 16 output DP-1
+workspace 17 output DP-1
+workspace 18 output DP-1
+workspace 19:Music output DP-1
+workspace 20:Calendar output DP-1
+workspace 21:Inbox output DP-1
+workspace 22:Monitor output DP-1
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -151,7 +170,20 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace 10:Critique
+bindsym $mod+t workspace Temp
+bindsym $mod+F1 workspace 11
+bindsym $mod+F2 workspace 12
+bindsym $mod+F3 workspace 13
+bindsym $mod+F4 workspace 14
+bindsym $mod+F5 workspace 15
+bindsym $mod+F6 workspace 16
+bindsym $mod+F7 workspace 17
+bindsym $mod+F8 workspace 18
+bindsym $mod+F9 workspace 19:Music
+bindsym $mod+F10 workspace 20:Calendar
+bindsym $mod+F11 workspace 21:Inbox
+bindsym $mod+F12 workspace 22:Monitor
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -163,7 +195,24 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+0 move container to workspace 10:Critique
+bindsym $mod+Shift+t move container to workspace Temp
+bindsym $mod+Shift+F1 move container to workspace 11
+bindsym $mod+Shift+F2 move container to workspace 12
+bindsym $mod+Shift+F3 move container to workspace 13
+bindsym $mod+Shift+F4 move container to workspace 14
+bindsym $mod+Shift+F5 move container to workspace 15
+bindsym $mod+Shift+F6 move container to workspace 16
+bindsym $mod+Shift+F7 move container to workspace 17
+bindsym $mod+Shift+F8 move container to workspace 18
+bindsym $mod+Shift+F9 move container to workspace 19:Music
+bindsym $mod+Shift+F10 move container to workspace 20:Calendar
+bindsym $mod+Shift+F11 move container to workspace 21:Inbox
+bindsym $mod+Shift+F12 move container to workspace 22:Monitor
+
+bindsym $mod+m workspace Music
+bindsym $mod+Shift+m move container to workspace Music
+workspace Music output DP-1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -192,4 +241,5 @@ bar {
 }
 
 exec ~/bin/start.sh
+exec xrdb ~/.dotfiles/.Xresources
 # exec gnome-settings-daemon
