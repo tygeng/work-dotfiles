@@ -54,7 +54,8 @@ bindsym XF86Sleep exec --no-startup-id i3lock && dbus-send --system --dest=org.f
 bindsym $mod+grave exec --no-startup-id fetchotp -x
 bindsym $mod+Return split h; exec urxvt
 bindsym $mod+Shift+Return split v; exec urxvt
-for_window [class="Guake"] floating enable border 1pixel
+for_window [window_role="pop-up"] floating enable
+for_window [class="Guake"] floating enable border 1pixel move absolute position 0px 0px
 for_window [instance="desktop-ssh"] border none
 for_window [title="^Application Finder"] floating enable
 for_window [title="^qtcreator"] floating enable
@@ -72,14 +73,19 @@ for_window [title="^Yakuake"] floating enable
 for_window [title="^DDD"] floating enable
 assign [title="DDD"] 4
 for_window [class="^Google-chrome" ] border none
-for_window [title="^Hangout" ] border 1pixel floating enable move absolute position 1600 px 600 px
+for_window [title="^Hangout" ] border 1pixel move absolute position 1920 px 700 px
+for_window [title="^Inbox" ] floating disable
+assign [title="^Inbox"] → 21:Inbox
+for_window [title="Calendar$" ] floating disable 
+assign [title="Calendar$"] → 20:Calendar
+for_window [title="Google Docs$" ] floating disable
+for_window [title="Cider$" ] floating disable
 for_window [title="^MATLAB$" ] border none floating enable
 for_window [class="Firefox$" ] border none
 for_window [title="^Terminal$" ] border 1pixel
 for_window [title="^WPS" ] border none
 for_window [title="^synapse" ] border none
 for_window [title="^Page\(s\) Unresponsive" ] floating enable
-for_window [class="jetbrains-idea-ce" ] border none
 
 assign [class="Gmusicbrowser"] 9
 
@@ -120,6 +126,7 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+Ctrl+space border toggle
 
 # change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle
@@ -181,3 +188,5 @@ bar {
 }
 
 exec ~/bin/start.sh
+exec xrdb ~/.dotfiles/.Xresources
+# exec gnome-settings-daemon
