@@ -54,6 +54,7 @@ bindsym XF86Sleep exec --no-startup-id i3lock && dbus-send --system --dest=org.f
 bindsym $mod+grave exec --no-startup-id fetchotp -x
 bindsym $mod+Return split h; exec urxvt
 bindsym $mod+Shift+Return split v; exec urxvt
+bindsym $mod+c exec google-chrome-stable --force-device-scale-factor=1.75
 for_window [window_role="pop-up"] floating enable
 for_window [class="Guake"] floating enable border 1pixel move absolute position 0px 0px
 for_window [instance="desktop-ssh"] border none
@@ -184,7 +185,7 @@ bindsym Mod4+Control+l resize grow   right 5 px or 5 ppt
 # finds out, if available)
 bar {
         status_command i3status
-        font pango:DejaVu Sans Mono 9
+        font pango:DejaVu Sans Mono 14
 }
 
 exec ~/bin/start.sh

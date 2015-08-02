@@ -68,7 +68,7 @@
 URxvt.scrollBar: false
 
 !-- Xft settings -- !
-Xft.dpi:        96
+Xft.dpi:        160
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
@@ -78,3 +78,5 @@ Xft.hintstyle:  hintfull
 URxvt.font: xft:Monospace:size=10
 URxvt.boldfont:xft:Monospace-Bold:size=10
 URxvt.letterSpace: -2
+URxvt.depth: 32
+URxvt.background: rgba:1111/1111/1111/dddd
