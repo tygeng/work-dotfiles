@@ -78,4 +78,4 @@ Xft.hintstyle:  hintfull
 URxvt.font: xft:Monospace:size=12
 URxvt.boldfont:xft:Monospace-Bold:size=12
 URxvt.letterSpace: -2
-
+Xcursor.theme: my-cursor

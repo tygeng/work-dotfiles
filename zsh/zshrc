@@ -129,3 +129,6 @@ alias msgbus=/google/data/ro/projects/corpmb/msgbus
 alias jade='/google/data/ro/teams/jade/jade'
 alias fido='/google/src/head/depot/google3/caribou/localconfig/eclipse/tools/fido/fido.sh'
 alias mysqlg=/google/data/ro/projects/speckle/mysql
+
+PERL_MB_OPT="--install_base \"/home/tgeng/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/tgeng/perl5"; export PERL_MM_OPT;

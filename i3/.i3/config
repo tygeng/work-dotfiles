@@ -30,6 +30,7 @@ floating_modifier $mod
 bindsym Mod1+q kill
 bindsym Mod1+Tab focus left
 bindsym $mod+F2 exec ~/bin/dpms_toggle
+exec ~/.dropbox-dist/dropboxd
 exec autokey-gtk
 exec feh --bg-fill ~/Pictures/wallpaper.jpg
 exec compton
@@ -41,10 +42,10 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # bindsym XF86ScreenSaver exec sudo pm-suspend
-# bindsym Pause exec sudo pm-suspend
+bindsym Pause exec sudo pm-suspend
 bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
 bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
-bindsym Pause exec ~/bin/kbd
+# bindsym Pause exec ~/bin/kbd
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock & suspend respectively
 bindsym XF86ScreenSaver exec --no-startup-id i3lock
@@ -80,6 +81,7 @@ for_window [title="^WPS" ] border none
 for_window [title="^synapse" ] border none
 for_window [title="^Page\(s\) Unresponsive" ] floating enable
 for_window [class="jetbrains-idea-ce" ] border none
+for_window [title="Oracle VM VirtualBox" ] border none
 
 assign [class="Gmusicbrowser"] 9
 
@@ -141,6 +143,8 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+m workspace Music
+bindsym $mod+t workspace Temp
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -153,6 +157,8 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+m move container to workspace Music
+bindsym $mod+Shift+t move container to workspace Temp
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
