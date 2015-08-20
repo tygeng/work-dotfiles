@@ -1,0 +1,20 @@
+#!/bin/sh
+CURRENT=$(xbacklight -get)
+FACTOR=$1
+if [ $(bc <<< "$1 <= 1") -eq 1 ]
+then
+    if [ $(bc <<< "$CURRENT <= 1") -eq 1 ]
+        then
+            PARAM=0
+        else
+            PARAM=$(bc <<< "$FACTOR*$CURRENT")
+    fi
+else
+    if [ $(bc <<< "$CURRENT <= 0.5") -eq 1 ]
+        then
+            PARAM=1
+        else
+            PARAM=$(bc <<< "$FACTOR*$CURRENT")
+    fi
+fi
+xbacklight -set $PARAM
