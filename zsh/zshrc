@@ -31,6 +31,11 @@ jsonb() {
 }
 
 source ~/.dotfiles/zsh/zsh-common
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
 function custom_pwd () {
     tokens_string=$result`echo $PWD|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/google3\/\?\(.*\)/\1 \2 \3/'`
     eval "tokens=($tokens_string)"
