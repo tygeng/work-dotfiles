@@ -37,6 +37,7 @@ exec compton
 # exec kupfer
 exec synapse
 exec TERM=screen-256color-bce guake
+# exec TERM=screen-256color-bce tilda
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -48,14 +49,16 @@ bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng
 # bindsym Pause exec ~/bin/kbd
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock & suspend respectively
-bindsym XF86ScreenSaver exec --no-startup-id i3lock
+bindsym Scroll_Lock exec --no-startup-id i3lock -d
+bindsym XF86ScreenSaver exec --no-startup-id i3lock -d
 bindsym XF86Sleep exec --no-startup-id i3lock && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
 
 # Fetch an OTP via bluetooth using Win+Grave
 bindsym $mod+grave exec --no-startup-id fetchotp -x
 bindsym $mod+Return split h; exec urxvt
 bindsym $mod+Shift+Return split v; exec urxvt
-for_window [class="Guake"] floating enable border 1pixel
+for_window [class="Guake"] floating enable border none move absolute position 0px 0px
+for_window [class="Tilda"] floating enable border none move absolute position 0px 0px
 for_window [instance="desktop-ssh"] border none
 for_window [title="^Application Finder"] floating enable
 for_window [title="^qtcreator"] floating enable
@@ -81,9 +84,10 @@ for_window [title="^WPS" ] border none
 for_window [title="^synapse" ] border none
 for_window [title="^Page\(s\) Unresponsive" ] floating enable
 for_window [class="jetbrains-idea-ce" ] border none
-for_window [title="Oracle VM VirtualBox" ] border none
+for_window [title="Oracle VM VirtualBox" ] border none 
 
 assign [class="Gmusicbrowser"] 9
+assign [title="Oracle VM VirtualBox" ] VBox
 
 
 # change focus
@@ -144,6 +148,7 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+m workspace Music
+bindsym $mod+v workspace VBox
 bindsym $mod+t workspace Temp
 
 # move focused container to workspace
@@ -158,6 +163,7 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+m move container to workspace Music
+bindsym $mod+Shift+v move container to workspace VBox
 bindsym $mod+Shift+t move container to workspace Temp
 
 # reload the configuration file
