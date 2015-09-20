@@ -64,7 +64,6 @@ for_window [title="^Application Finder"] floating enable
 for_window [title="^qtcreator"] floating enable
 # for_window [title="^QQ2012"] floating enable border none
 for_window [title="^cv:"] floating enable
-for_window [title="^Figure"] floating enable
 for_window [title=".*Preference.*"] floating enable
 for_window [class="Pidgin"] floating enable
 for_window [title="File Operation Progress"] floating enable
@@ -83,11 +82,12 @@ for_window [title="^Terminal$" ] border 1pixel
 for_window [title="^WPS" ] border none
 for_window [title="^synapse" ] border none
 for_window [title="^Page\(s\) Unresponsive" ] floating enable
-for_window [class="jetbrains-idea-ce" ] border none
+for_window [class="jetbrains-idea-ce" ] border normal
 for_window [title="Oracle VM VirtualBox" ] border none 
 
 assign [class="Gmusicbrowser"] 9
 assign [title="Oracle VM VirtualBox" ] VBox
+assign [title="Figure" ] Figure
 
 
 # change focus
@@ -117,7 +117,7 @@ bindsym $mod+Shift+Right move right
 
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+# bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
@@ -150,6 +150,7 @@ bindsym $mod+0 workspace 10
 bindsym $mod+m workspace Music
 bindsym $mod+v workspace VBox
 bindsym $mod+t workspace Temp
+bindsym $mod+f workspace Figure
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -165,6 +166,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+m move container to workspace Music
 bindsym $mod+Shift+v move container to workspace VBox
 bindsym $mod+Shift+t move container to workspace Temp
+bindsym $mod+Shift+f move container to workspace Figure
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
