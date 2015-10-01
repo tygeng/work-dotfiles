@@ -55,8 +55,8 @@ bindsym XF86Sleep exec --no-startup-id i3lock && dbus-send --system --dest=org.f
 
 # Fetch an OTP via bluetooth using Win+Grave
 bindsym $mod+grave exec --no-startup-id fetchotp -x
-bindsym $mod+Return split h; exec urxvt
-bindsym $mod+Shift+Return split v; exec urxvt
+bindsym $mod+Return split h; exec terminator --command="TERM=screen-256color-bce tmux new"
+bindsym $mod+Shift+Return split v; exec terminator --command="TERM=screen-256color-bce tmux new"
 for_window [class="Guake"] floating enable border none move absolute position 0px 0px
 for_window [class="Tilda"] floating enable border none move absolute position 0px 0px
 for_window [instance="desktop-ssh"] border none

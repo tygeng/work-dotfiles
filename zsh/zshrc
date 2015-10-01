@@ -91,9 +91,7 @@ alias open=gnome-open
 
 
 pathto(){
-    for file in $@; do
-        echo $PWD/$file
-    done
+    echo -n $PWD/$1 | xclip -selection clipboard
 }
 alias todo='vim ~/todo'
 

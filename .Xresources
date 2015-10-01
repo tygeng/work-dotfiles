@@ -80,3 +80,10 @@ URxvt.boldfont:xft:Monospace-Bold:size=10
 URxvt.letterSpace: -2
 URxvt.depth: 32
 URxvt.background: rgba:1111/1111/1111/dddd
+
+! -- Paste -- !
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+ 
+URxvt.iso14755: False
+ 
+URxvt.perl-ext-common: default,clipboard
