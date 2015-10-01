@@ -82,8 +82,8 @@ for_window [title="^Terminal$" ] border 1pixel
 for_window [title="^WPS" ] border none
 for_window [title="^synapse" ] border none
 for_window [title="^Page\(s\) Unresponsive" ] floating enable
-for_window [class="jetbrains-idea.*" ] border none
-for_window [class="studio.*" ] border none
+# for_window [class="jetbrains-idea.*" ] border none
+# for_window [class="studio.*" ] border none
 
 assign [class="Gmusicbrowser"] 9
 
@@ -155,10 +155,11 @@ workspace 15 output DP-1
 workspace 16 output DP-1
 workspace 17 output DP-1
 workspace 18 output DP-1
-workspace 19:Music output DP-1
+workspace 19:Buganizer output DP-1
 workspace 20:Calendar output DP-1
 workspace 21:Inbox output DP-1
 workspace 22:Monitor output DP-1
+workspace O output DP-1
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -180,10 +181,11 @@ bindsym $mod+F5 workspace 15
 bindsym $mod+F6 workspace 16
 bindsym $mod+F7 workspace 17
 bindsym $mod+F8 workspace 18
-bindsym $mod+F9 workspace 19:Music
+bindsym $mod+F9 workspace 19:Buganizer
 bindsym $mod+F10 workspace 20:Calendar
 bindsym $mod+F11 workspace 21:Inbox
 bindsym $mod+F12 workspace 22:Monitor
+bindsym $mod+o workspace O
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -205,10 +207,11 @@ bindsym $mod+Shift+F5 move container to workspace 15
 bindsym $mod+Shift+F6 move container to workspace 16
 bindsym $mod+Shift+F7 move container to workspace 17
 bindsym $mod+Shift+F8 move container to workspace 18
-bindsym $mod+Shift+F9 move container to workspace 19:Music
+bindsym $mod+Shift+F9 move container to workspace 19:Buganizer
 bindsym $mod+Shift+F10 move container to workspace 20:Calendar
 bindsym $mod+Shift+F11 move container to workspace 21:Inbox
 bindsym $mod+Shift+F12 move container to workspace 22:Monitor
+bindsym $mod+Shift+o move container to workspace O
 
 bindsym $mod+m workspace Music
 bindsym $mod+Shift+m move container to workspace Music

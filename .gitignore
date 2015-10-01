@@ -14,4 +14,6 @@ w3m
 vim/vim_folder/bundle/YouCompleteMe
 vim/vim_folder/bundle/syntastic
 vim/vim_folder/bundle/tern_for_vim
+zsh/.zsh/cache/*
+vim/.vim/cache/*
 

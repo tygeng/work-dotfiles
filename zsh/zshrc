@@ -86,7 +86,7 @@ alias open=gnome-open
 
 pathto(){
     for file in $@; do
-        echo $PWD/$file
+        echo -n $PWD/$file | xclip -selection clipboard
     done
 }
 alias todo='vim ~/todo'
@@ -129,6 +129,23 @@ alias msgbus=/google/data/ro/projects/corpmb/msgbus
 alias jade='/google/data/ro/teams/jade/jade'
 alias fido='/google/src/head/depot/google3/caribou/localconfig/eclipse/tools/fido/fido.sh'
 alias mysqlg=/google/data/ro/projects/speckle/mysql
+alias apido=/google/data/ro/teams/oneplatform/apido
+alias generic_corpus=/google/data/ro/teams/generic-corpus/generic_corpus
 
 # for the g4d autocomplete
 source /etc/bash_completion.d/g4d
+git() { if [[ $1 == 'merge' ]]; then echo 'Use git5 merge, not git merge. git merge does not understand how to merge the READONLY link and it can corrupt your branch, so stay away from it.  type "unset -f git" to remove this warning'; else command git "$@"; fi; }
+
+alias gitc='git checkout'
+alias gitco='git commit'
+alias gits='git status'
+alias gitb='git branch'
+alias git5s='git5 status'
+alias git5d='git5 diff --stat'
+
+if [ -n "$TMUX_RUNNING" ]; then
+else
+  export TMUX_RUNNING=YES
+  export TERM=xterm-256color
+  tmx -2;exit
+fi
