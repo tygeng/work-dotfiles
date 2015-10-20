@@ -1,7 +1,7 @@
 set tw=0
-au FileType cpp,c,java,tex,text  set tw=80
+au FileType cpp,c,java,tex,text  set tw=99
 au FileType xml,html,xhtml,php,eruby so ~/.vim/ftplugin/html_autoclosing.vim
-set formatoptions=cq textwidth=80 foldignore= wildignore+=*.py[co]
+set formatoptions=cq textwidth=99 foldignore= wildignore+=*.py[co]
 syntax sync minlines=256
 set mouse=a
 
