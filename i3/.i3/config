@@ -56,7 +56,7 @@ bindsym XF86Sleep exec --no-startup-id i3lock && dbus-send --system --dest=org.f
 bindsym $mod+grave exec --no-startup-id fetchotp -x
 bindsym $mod+Return split h; exec urxvt
 bindsym $mod+Shift+Return split v; exec urxvt
-bindsym $mod+c exec google-chrome-stable --force-device-scale-factor=1
+bindsym $mod+c exec google-chrome-stable
 for_window [window_role="pop-up"] floating enable
 for_window [class="Guake"] floating enable border 1pixel move absolute position 0px 0px
 for_window [class="Tilda"] floating enable border none move absolute position 0px 0px
@@ -76,10 +76,9 @@ for_window [title="^xfce4-notifyd$"] floating enable border none
 for_window [title="^Yakuake"] floating enable
 for_window [title="^DDD"] floating enable
 assign [title="DDD"] 4
-for_window [class="^Google-chrome" ] border none
-for_window [title="^Hangout" ] border 1pixel move absolute position 2250 px 950 px
+for_window [class="^google-chrome" ] border none
+for_window [title="^Hangouts" ] border 1pixel move absolute position 2250 px 950 px
 for_window [title="^Inbox" ] floating disable
-assign [title="^Inbox"] → 21:Inbox
 for_window [title="Calendar$" ] floating disable 
 assign [title="Calendar$"] → 20:Calendar
 for_window [title="Google Docs$" ] floating disable
@@ -193,5 +192,5 @@ bar {
 
 exec ~/bin/start.sh
 exec xrdb ~/.dotfiles/.Xresources
-exec google-chrome-stable --force-device-scale-factor=1 --no-startup-window
+# exec google-chrome-stable --force-device-scale-factor=1 --no-startup-window
 # exec gnome-settings-daemon

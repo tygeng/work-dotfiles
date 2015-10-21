@@ -3,6 +3,6 @@ xset dpms 300 0 0
 xset +dpms
 xset r rate 250 75 
 # xmodmap /home/tgeng/.Xmodmap
-xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Velocity Scaling" 400
+xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Velocity Scaling" 500
 xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Profile" 2
 xinput disable 'SynPS/2 Synaptics TouchPad'
