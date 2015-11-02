@@ -24,7 +24,7 @@ git clone https://github.com/marijnh/tern_for_vim.git
 git clone https://github.com/Valloric/YouCompleteMe.git
 cd YouCompleteMe
 git submodule update --init --recursive
-./install.sh
+./install.sh --clang-completer
 cd ..
 git clone https://github.com/scrooloose/syntastic.git
 cd ~

@@ -217,48 +217,26 @@
     <item>
         <name>xmodmap</name>
         <identifier>tianyu_xmodmap</identifier>
+        <only>XCODE,CHROME,SAFARI,FINDER,ARDUINO_IDE</only>
         <autogen>
             __KeyToKey__
-            KeyCode::J, ModifierFlag::CONTROL_R,
-            KeyCode::CURSOR_LEFT
-        </autogen>
-        <autogen>
-            __KeyToKey__
-            KeyCode::K, ModifierFlag::CONTROL_R,
+            KeyCode::J, ModifierFlag::CONTROL_L,
             KeyCode::CURSOR_DOWN
         </autogen>
         <autogen>
             __KeyToKey__
-            KeyCode::L, ModifierFlag::CONTROL_R,
-            KeyCode::CURSOR_RIGHT
-        </autogen>
-        <autogen>
-            __KeyToKey__
-            KeyCode::I, ModifierFlag::CONTROL_R,
+            KeyCode::K, ModifierFlag::CONTROL_L,
             KeyCode::CURSOR_UP
         </autogen>
         <autogen>
             __KeyToKey__
-            KeyCode::U, ModifierFlag::CONTROL_R,
-            KeyCode::PAGEUP
+            KeyCode::L, ModifierFlag::CONTROL_L,
+            KeyCode::CURSOR_RIGHT
         </autogen>
         <autogen>
             __KeyToKey__
-            KeyCode::O, ModifierFlag::CONTROL_R,
-            KeyCode::PAGEDOWN
+            KeyCode::H, ModifierFlag::CONTROL_L,
+            KeyCode::CURSOR_LEFT
         </autogen>
-        <autogen>
-            __KeyToKey__
-            KeyCode::H, ModifierFlag::CONTROL_R,
-            KeyCode::HOME
-        </autogen>
-        <autogen>
-            __KeyToKey__
-            KeyCode::SEMICOLON, ModifierFlag::CONTROL_R,
-            KeyCode::END
-        </autogen>
-
     </item>
-
-
 </root>
