@@ -32,12 +32,18 @@ jsonb() {
 
 source ~/.dotfiles/zsh/zsh-common
 function custom_pwd () {
-    tokens_string=$result`echo $PWD|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/google3\/\?\(.*\)/\1 \2 \3/'`
-    eval "tokens=($tokens_string)"
+    g4_path_pattern=`echo $PWD|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/google3\/\?\(.*\)/\1 \2 \3/'`
+    eval "tokens=($g4_path_pattern)"
     if [ -n "${tokens[2]}" ]; then
         result="%{$fg_bold[blue]%}${tokens[1]}%{$reset_color%}(%{$fg_bold[magenta]%}${tokens[2]}%{$reset_color%}) google3: %{$fg_bold[yellow]%}//${tokens[3]}"
     else
-        result="%~"
+        git5_path_pattern=`echo $PWD|sed 's/^\/usr\/local\/google\/home\/tgeng\/git\/\([^/]\+\)\/\(google3\)\/\?\(.*\)/\1 \2 \3/'`
+        eval "git5_tokens=($git5_path_pattern)"
+        if [ -n "${git5_tokens[2]}" ]; then
+            result="%{$fg_bold[blue]%}Git5%{$reset_color%}(%{$fg_bold[magenta]%}${git5_tokens[1]}%{$reset_color%}) %{$fg_bold[yellow]%}//${git5_tokens[3]}"
+        else
+            result="%~"
+        fi
     fi
 print $result
 }
@@ -85,9 +91,10 @@ alias open=gnome-open
 
 
 pathto(){
-    for file in $@; do
-        echo -n $PWD/$file | xclip -selection clipboard
-    done
+    echo -n $PWD/$1 | xclip -selection clipboard
+}
+bpath(){
+    echo -n $PWD$1 | perl -pe 's|^.*?google3/?(.*)|//\1|'| xclip -selection clipboard
 }
 alias todo='vim ~/todo'
 
@@ -142,6 +149,7 @@ alias gits='git status'
 alias gitb='git branch'
 alias git5s='git5 status'
 alias git5d='git5 diff --stat'
+alias check='git5 lint && build_cleaner ...'
 
 if [ -n "$TMUX_RUNNING" ]; then
 else

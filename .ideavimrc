@@ -31,7 +31,7 @@ inoremap <C-w> <C-o><C-w>
 nnoremap gm bimock<Esc>l~
 nnoremap J :action EditorJoinLines<CR>
 nnoremap R :action RenameElement<CR>
-nnoremap s :action CommentByLineComment<CR>
+nnoremap s :action CommentByLineComment<CR>k
 nnoremap t :action ToggleLineBreakpoint<CR>
 set ignorecase
 set smartcase
