@@ -149,7 +149,7 @@ alias gits='git status'
 alias gitb='git branch'
 alias git5s='git5 status'
 alias git5d='git5 diff --stat'
-alias check='git5 lint && build_cleaner ...'
+alias bclnr='build_cleaner'
 
 if [ -n "$TMUX_RUNNING" ]; then
 else
