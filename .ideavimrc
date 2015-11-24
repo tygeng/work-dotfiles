@@ -6,7 +6,7 @@ vnoremap <C-a> ^
 vnoremap <C-e> $
 noremap <C-z> <C-a>
 inoremap <C-a> <C-o>^
-inoremap <C-e> <Esc>$a
+inoremap <C-e> <C-o>$
 inoremap <C-l> <Right>
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
@@ -29,7 +29,12 @@ vnoremap <C-k> 3k
 vnoremap <C-j> 3j
 inoremap <C-w> <C-o><C-w>
 nnoremap gm bimock<Esc>l~
-set ignorecase 
-set smartcase 
-set number 
+nnoremap J :action EditorJoinLines<CR>
+nnoremap R :action RenameElement<CR>
+nnoremap s :action CommentByLineComment<CR>
+nnoremap t :action ToggleLineBreakpoint<CR>
+set ignorecase
+set smartcase
+set number
 set clipboard=unnamed
+set timeoutlen=100

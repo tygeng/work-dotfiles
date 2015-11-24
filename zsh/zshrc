@@ -140,3 +140,6 @@ PERL_MM_OPT="INSTALL_BASE=/home/tgeng/perl5"; export PERL_MM_OPT;
 if [ -z $TMUX ]; then
     TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmux new && exit
 fi
+
+[[ -s "/home/tgeng/.gvm/scripts/gvm" ]] && source "/home/tgeng/.gvm/scripts/gvm"
+gvm use 1.4

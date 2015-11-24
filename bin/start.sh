@@ -30,3 +30,5 @@ synclient SingleTapTimeout=50
 if hash sogou-qimpanel; then
     sogou-qimpanel
 fi
+synapse
+TERM=screen-256color-bce tilda

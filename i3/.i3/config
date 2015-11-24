@@ -35,8 +35,6 @@ exec autokey-gtk
 exec feh --bg-fill ~/Pictures/wallpaper.jpg
 exec compton
 # exec kupfer
-exec synapse
-exec TERM=screen-256color-bce tilda
 # exec TERM=screen-256color-bce tilda
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
@@ -196,3 +194,4 @@ bar {
 }
 
 exec ~/bin/start.sh
+exec sleep 5; synapse; TERM=screen-256color-bce tilda
