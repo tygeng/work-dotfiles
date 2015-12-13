@@ -149,8 +149,9 @@ alias gits='git status'
 alias gitb='git branch'
 alias git5s='git5 status'
 alias git5d='git5 diff --stat'
-alias git5cln='git5 cleanup --keep-branches=main,dev'
+alias git5cln='git5 cleanup'
 alias bclnr='build_cleaner'
+alias findcells=/google/data/ro/teams/org-tools-sre/findcells
 
 if [ -n "$TMUX_RUNNING" ]; then
 else

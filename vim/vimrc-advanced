@@ -1,9 +1,8 @@
 if !has("gui_running")
     set t_Co=256
 else
-"     let g:Powerline_symbols = 'fancy'
-"     set transparency=8     
-"     set guifont=Menlo\ For\ Powerline:h12
+    let g:Powerline_symbols = 'fancy'
+    set guifont=Hack\ 10 
 endif
 "==========
 "" adjust configuration for such hostile environment as Windows {{{
@@ -101,9 +100,6 @@ vmap ZQ vZQ
 autocmd FileType c,cpp,objc nnoremap ZZ :lcl<bar>w<bar>lcl<bar>q<CR>
 vmap ZZ vZZ
 " end for syntastic
-" powerline
-let g:Powerline_stl_path_style = 'relative'
-set laststatus=2
 " For Emma html
 let g:user_emmet_leader_key='<C-f>'
 let g:user_emmet_install_global = 0
@@ -156,7 +152,7 @@ let ruby_operators = 1
 let ruby_space_errors = 1
 let g:ruby_indent_access_modifier_style = 'indent'
 " Tag bar
-noremap <C-t> :TagbarToggle<CR>
+" noremap <C-t> :TagbarToggle<CR>
 " let g:tagbar_autoclose = 1
 let g:tagbar_zoomwidth = 0
 let g:tagbar_width = 30
@@ -169,6 +165,13 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:UltiSnipsExpandTrigger="<C-f>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+" powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
+" Always show statusline
+set laststatus=2
 "=========================
 " Aligh Tab
 nnoremap T :Tab /
