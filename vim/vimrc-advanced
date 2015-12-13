@@ -172,6 +172,8 @@ python del powerline_setup
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
 " Always show statusline
 set laststatus=2
+" gitgutter
+let g:gitgutter_sign_column_always = 1
 "=========================
 " Aligh Tab
 nnoremap T :Tab /
