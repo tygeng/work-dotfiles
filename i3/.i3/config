@@ -73,7 +73,7 @@ for_window [title="^xfce4-notifyd$"] floating enable border none
 for_window [title="^Yakuake"] floating enable
 for_window [title="^DDD"] floating enable
 assign [title="DDD"] 4
-for_window [class="^Google-chrome" ] border none
+for_window [class="^google-chrome$"] border none
 for_window [title="^Hangouts$" ] border 1pixel floating enable move absolute position 1600 px 600 px
 for_window [title="^MATLAB$" ] border none floating enable
 for_window [class="Firefox$" ] border none
@@ -86,7 +86,9 @@ for_window [title="Oracle VM VirtualBox" ] border none
 
 assign [class="Gmusicbrowser"] 9
 assign [title="Oracle VM VirtualBox" ] VBox
-assign [title="Figure" ] Figure
+# assign [title="Figure" ] Figure
+assign [class="^FL.exe"] Fl Studio
+assign [title="^Kindle Cloud Reader" ] Kindle
 
 
 # change focus
@@ -149,7 +151,8 @@ bindsym $mod+0 workspace 10
 bindsym $mod+m workspace Music
 bindsym $mod+b workspace VBox
 bindsym $mod+t workspace Temp
-bindsym $mod+f workspace Figure
+bindsym $mod+f workspace Fl Studio
+bindsym $mod+z workspace Kindle
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -165,7 +168,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+m move container to workspace Music
 bindsym $mod+Shift+b move container to workspace VBox
 bindsym $mod+Shift+t move container to workspace Temp
-bindsym $mod+Shift+f move container to workspace Figure
+bindsym $mod+Shift+f move container to workspace Fl Studio
+bindsym $mod+Shift+z move container to workspace Kindle
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
