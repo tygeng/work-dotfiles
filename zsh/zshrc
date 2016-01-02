@@ -49,6 +49,7 @@ print $result
 }
 PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
 setopt promptsubst
+setopt menu_complete
 #export LANG=C
 
 # zsh completion
@@ -149,6 +150,7 @@ alias gits='git status'
 alias gitb='git branch'
 alias git5s='git5 status'
 alias git5d='git5 diff --stat'
+alias git5x='git5 export -g'
 alias git5cln='git5 cleanup'
 alias bclnr='build_cleaner'
 alias findcells=/google/data/ro/teams/org-tools-sre/findcells
