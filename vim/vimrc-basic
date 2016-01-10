@@ -1,7 +1,7 @@
 set tw=0
-au FileType cpp,c,java,tex,text  set tw=80
+au FileType cpp,c,java,tex,text  set tw=99
 au FileType xml,html,xhtml,php,eruby so ~/.vim/ftplugin/html_autoclosing.vim
-set formatoptions=cq textwidth=80 foldignore= wildignore+=*.py[co]
+set formatoptions=cq textwidth=99 foldignore= wildignore+=*.py[co]
 syntax sync minlines=256
 set mouse=a
 
@@ -20,6 +20,7 @@ set undoreload=10000
 " remember last position
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set timeoutlen=500
+set autoread
 "---------------------------
 function! ResCur()
   if line("'\"") <= line("$")
@@ -55,11 +56,12 @@ vnoremap gk k
 nnoremap <C-Tab> <C-w>w
 vnoremap <C-Tab> <C-w>w
 inoremap <C-Tab> <C-w>w
+inoremap <C-w> <C-o><C-w>
 nnoremap <Right> *
 nnoremap <Left> #
 nnoremap <up> 3<c-y>
 nnoremap <down> 3<c-e>
-imap <Home> <esc>^i
+imap <Home> <C-o>^
 map <Home> ^
 map <c-d> <delete>
 imap <c-d> <Delete>
@@ -108,7 +110,7 @@ map <S-F8> :vsp<CR>:wincmd l<CR>:exec("tag ".expand("<cword>"))<CR>:wincmd h<CR>
 nmap <F9> :w<CR>:FSHere<CR>
 imap <F9> <C-o><F9>
 map <S-F9> :w<CR>:vsp<CR>:FSRight<CR>:wincmd h<CR>
-nnoremap <C-s> :w<CR>
+nnoremap <C-s> :wa<CR>
 inoremap <C-s> <Esc>:w<CR>
 vnoremap <C-s> v:w<CR>
 "=========================
@@ -150,19 +152,6 @@ nnoremap R :%s/\<<C-r><C-w>\>//g<Left><Left>
 vmap R *N:%s///g<Left><Left>
 vmap <Right> *
 vmap <Left> #
-nnoremap <space> za
 nmap <M-a> ggVGy
 
 autocmd FileType c,cpp,java,php,python,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-au BufEnter * call MyLastWindow()
-
-function! MyLastWindow()
-  " if the window is quickfix go on
-  if &buftype=="quickfix"
-    " if this window is last on screen quit without warning
-    if winbufnr(2) == -1
-      quit!
-    endif
-  endif
-endfunction
