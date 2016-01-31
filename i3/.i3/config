@@ -31,7 +31,7 @@ bindsym Mod1+q kill
 bindsym $mod+F2 exec ~/bin/dpms_toggle
 exec autokey-gtk
 exec feh --bg-fill ~/Pictures/wallpaper.jpg
-exec compton
+# exec compton
 exec ~/bin/kbd
 # exec kupfer
 exec synapse
@@ -44,8 +44,8 @@ bindsym XF86MonBrightnessUp exec ~/bin/adjust-backlight 2.5 # increase screen br
 bindsym XF86MonBrightnessDown exec ~/bin/adjust-backlight 0.4 # decrease screen brightness
 # bindsym XF86ScreenSaver exec sudo pm-suspend
 # bindsym Pause exec sudo pm-suspend
-bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh -X -C  tgeng-linux.kir.corp.google.com
-bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh -X -C -c blowfish-cbc,arcfour tgeng-linux.kir.corp.google.com
+bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh -Y -C  tgeng-linux.kir.corp.google.com
+bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh -Y -C -c blowfish-cbc,arcfour tgeng-linux.kir.corp.google.com
 bindsym Pause exec ~/bin/kbd
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock & suspend respectively
@@ -77,7 +77,7 @@ for_window [title="^Yakuake"] floating enable
 for_window [title="^DDD"] floating enable
 assign [title="DDD"] 4
 for_window [class="^google-chrome" ] border none
-for_window [title="^Hangouts" ] border 1pixel move absolute position 2250 px 950 px
+for_window [title="^Hangouts" ] border 1pixel move absolute position 2100 px 700 px
 for_window [title="^Inbox" ] floating disable
 for_window [title="Calendar$" ] floating disable 
 assign [title="Calendar$"] → 20:Calendar
@@ -99,6 +99,7 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+Tab workspace back_and_forth
+bindsym Mod1+Tab focus left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left

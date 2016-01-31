@@ -75,8 +75,13 @@ Xft.hinting:    true
 Xft.hintstyle:  hintfull
 
 ! -- Fonts -- !
-URxvt.font: xft:Monospace:size=10
-URxvt.boldfont:xft:Monospace-Bold:size=10
+URxvt.font:           xft:Hack:size=10:antialias=true,xft:Inconsolata\ For\ Powerline:size=10:antialias=true
+URxvt.imFont:         xft:Hack:size=10:antialias=true,xft:Inconsolata\ For\ Powerline:size=10:antialias=true
+URxvt.boldFont:       xft:Hack:size=10:antialias=true,xft:Inconsolata\ For\ Powerline:size=10:antialias=true
+URxvt.italicFont:     xft:Hack:size=10:antialias=true,xft:Inconsolata\ For\ Powerline:size=10:antialias=true
+URxvt.boldItalicFont: xft:Hack:size=10:antialias=true,xft:Inconsolata\ For\ Powerline:size=10:antialias=true
+! URxvt.font: xft:Hack:size=10
+! URxvt.boldfont:xft:Hack-Bold:size=10
 URxvt.letterSpace: -2
 URxvt.depth: 32
 URxvt.background: rgba:1111/1111/1111/dddd
