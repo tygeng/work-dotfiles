@@ -31,7 +31,6 @@ bindsym Mod1+q kill
 bindsym Mod1+Tab focus left
 bindsym $mod+F2 exec ~/bin/dpms_toggle
 exec ~/.dropbox-dist/dropboxd
-exec autokey-gtk
 exec feh --bg-fill ~/Pictures/wallpaper.jpg
 exec compton
 # exec kupfer
@@ -72,6 +71,7 @@ for_window [title="^swing"] floating enable
 for_window [title="^xfce4-notifyd$"] floating enable border none
 for_window [title="^Yakuake"] floating enable
 for_window [title="^DDD"] floating enable
+for_window [class="^python"] floating enable
 assign [title="DDD"] 4
 for_window [class="^google-chrome$"] border none
 for_window [title="^Hangouts$" ] border 1pixel floating enable move absolute position 1600 px 600 px
@@ -79,7 +79,6 @@ for_window [title="^MATLAB$" ] border none floating enable
 for_window [class="Firefox$" ] border none
 for_window [title="^Terminal$" ] border 1pixel
 for_window [title="^WPS" ] border none
-for_window [title="^synapse" ] border none
 for_window [title="^Page\(s\) Unresponsive" ] floating enable
 for_window [class="jetbrains-idea-ce" ] border normal
 for_window [title="Oracle VM VirtualBox" ] border none 
@@ -198,4 +197,4 @@ bar {
 }
 
 exec ~/bin/start.sh
-exec sleep 5; synapse; TERM=screen-256color-bce tilda
+exec sleep 5; gnome-do & TERM=screen-256color-bce tilda & autokey-gtk

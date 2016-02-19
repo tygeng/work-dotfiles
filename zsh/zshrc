@@ -16,7 +16,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
    bindkey 'OH' beginning-of-line
    bindkey 'OF' end-of-line
 
-   bindkey  '^[[5~'    history-beginning-search-backward
+   bindkey  '^[[5~'  history-beginning-search-backward
    bindkey  '^[[6~'  history-beginning-search-forward
 fi
 
@@ -32,9 +32,7 @@ jsonb() {
 
 source ~/.dotfiles/zsh/zsh-common
 
-export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
 source ~/.zsh/pinyin-completion/shell/pinyin-comp.zsh
 
 function custom_pwd () {
@@ -52,6 +50,7 @@ setopt promptsubst
 #export LANG=C
 
 # zsh completion
+setopt menu_complete
 
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
         export TERM='xterm-256color'
@@ -67,15 +66,6 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 source ~/bin/bashmarks.sh
 
-
-# Use ADB turbo whenever possible - otherwise fallback to standard adb.
-function adb() {
-  EMU_DEPS=/google/data/ro/teams/mobile_eng_prod/emu/live/google3/
-  ANDROID_SDK=${EMU_DEPS}/third_party/java/android/android_sdk_linux/
-  EMU_SUPPORT=${EMU_DEPS}/tools/android/emulator/support/
-  ANDROID_ADB=${ANDROID_SDK}/platform-tools/adb 
-  ANDROID_ADB=${ANDROID_ADB} $EMU_SUPPORT/adb.turbo "$@"
-}
 
 cd `cat ~/.current_pwd`
 
@@ -133,13 +123,21 @@ alias msgbus=/google/data/ro/projects/corpmb/msgbus
 alias jade='/google/data/ro/teams/jade/jade'
 alias fido='/google/src/head/depot/google3/caribou/localconfig/eclipse/tools/fido/fido.sh'
 alias mysqlg=/google/data/ro/projects/speckle/mysql
+alias gits='git status'
+alias gitc='git checkout'
+alias gitco='git commit -m'
+alias gitcoa='git commit -am'
+alias gitcoam='git commmit -a --amend --no-edit'
 
 # PERL_MB_OPT="--install_base \"/home/tgeng/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/tgeng/perl5"; export PERL_MM_OPT;
 
 if [ -z $TMUX ]; then
-    TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmux new && exit
+    TERM=screen-256color-bce tmux attach-session -s dropdown || TERM=screen-256color-bce tmux new-session -s dropdown && exit
 fi
 
 [[ -s "/home/tgeng/.gvm/scripts/gvm" ]] && source "/home/tgeng/.gvm/scripts/gvm"
+
+unset GREP_OPTIONS
 gvm use 1.4
+
