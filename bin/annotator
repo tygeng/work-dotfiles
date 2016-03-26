@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python ~/dev/katsu/shm/annotator/gui/main.py $@

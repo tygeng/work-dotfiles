@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for file in "$@"; do
+    new_file="${file%.*}.wav"
+    echo '-->' "${new_file}"
+    echo y | avconv -i "${file}" "${new_file}" 2>/dev/null
+    rm "${file}"
+done

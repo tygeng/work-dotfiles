@@ -16,7 +16,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
    bindkey 'OH' beginning-of-line
    bindkey 'OF' end-of-line
 
-   bindkey  '^[[5~'  history-beginning-search-backward
+   bindkey  '^[[5~'    history-beginning-search-backward
    bindkey  '^[[6~'  history-beginning-search-forward
 fi
 
@@ -32,25 +32,33 @@ jsonb() {
 
 source ~/.dotfiles/zsh/zsh-common
 
+export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
 source ~/.zsh/pinyin-completion/shell/pinyin-comp.zsh
 
 function custom_pwd () {
-    tokens_string=$result`echo $PWD|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/google3\/\?\(.*\)/\1 \2 \3/'`
-    eval "tokens=($tokens_string)"
+    g4_path_pattern=`echo $PWD|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/google3\/\?\(.*\)/\1 \2 \3/'`
+    eval "tokens=($g4_path_pattern)"
     if [ -n "${tokens[2]}" ]; then
         result="%{$fg_bold[blue]%}${tokens[1]}%{$reset_color%}(%{$fg_bold[magenta]%}${tokens[2]}%{$reset_color%}) google3: %{$fg_bold[yellow]%}//${tokens[3]}"
     else
-        result="%~"
+        git5_path_pattern=`echo $PWD|sed 's/^\/usr\/local\/google\/home\/tgeng\/git\/\([^/]\+\)\/\(google3\)\/\?\(.*\)/\1 \2 \3/'`
+        eval "git5_tokens=($git5_path_pattern)"
+        if [ -n "${git5_tokens[2]}" ]; then
+            result="%{$fg_bold[blue]%}Git5%{$reset_color%}(%{$fg_bold[magenta]%}${git5_tokens[1]}%{$reset_color%}) %{$fg_bold[yellow]%}//${git5_tokens[3]}"
+        else
+            result="%~"
+        fi
     fi
 print $result
 }
 PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
 setopt promptsubst
+setopt menu_complete
 #export LANG=C
 
 # zsh completion
-setopt menu_complete
 
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
         export TERM='xterm-256color'
@@ -67,6 +75,15 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 source ~/bin/bashmarks.sh
 
 
+# Use ADB turbo whenever possible - otherwise fallback to standard adb.
+function adb() {
+  EMU_DEPS=/google/data/ro/teams/mobile_eng_prod/emu/live/google3/
+  ANDROID_SDK=${EMU_DEPS}/third_party/java/android/android_sdk_linux/
+  EMU_SUPPORT=${EMU_DEPS}/tools/android/emulator/support/
+  ANDROID_ADB=${ANDROID_SDK}/platform-tools/adb 
+  ANDROID_ADB=${ANDROID_ADB} $EMU_SUPPORT/adb.turbo "$@"
+}
+
 cd `cat ~/.current_pwd`
 
 cdg() {
@@ -77,11 +94,14 @@ alias cdj='cd /usr/local/google/users/tgeng/magicjar'
 
 alias vex=/home/build/static/projects/vex/vex
 alias orgconsole=/google/data/ro/projects/hr/db/bin/console
-alias open=gvfs-open
+alias open=gnome-open
 
 
 pathto(){
     echo -n $PWD/$1 | xclip -selection clipboard
+}
+bpath(){
+    echo -n $PWD$1 | perl -pe 's|^.*?google3/?(.*)|//\1|'| xclip -selection clipboard
 }
 alias todo='vim ~/todo'
 
@@ -119,23 +139,19 @@ meld /google/src/cloud/tgeng/{$2,$3}/google3/javatests/$1 &
 '='() {
 calc $@
 }
-alias msgbus=/google/data/ro/projects/corpmb/msgbus
-alias jade='/google/data/ro/teams/jade/jade'
-alias fido='/google/src/head/depot/google3/caribou/localconfig/eclipse/tools/fido/fido.sh'
-alias mysqlg=/google/data/ro/projects/speckle/mysql
-alias gits='git status'
-alias gitc='git checkout'
-alias gitco='git commit -am'
 
-# PERL_MB_OPT="--install_base \"/home/tgeng/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/tgeng/perl5"; export PERL_MM_OPT;
+# for the g4d autocomplete
+# source /etc/bash_completion.d/g4d
+git() { if [[ $1 == 'merge' ]]; then echo 'Use git5 merge, not git merge. git merge does not understand how to merge the READONLY link and it can corrupt your branch, so stay away from it.  type "unset -f git" to remove this warning'; else command git "$@"; fi; }
+
+alias gitc='git checkout'
+alias gitco='git commit'
+alias gits='git status'
+alias gitb='git branch'
 
 if [ -z $TMUX ]; then
-    TERM=screen-256color-bce tmux attach-session -t dropdown || TERM=screen-256color-bce tmux new-session -s dropdown && exit
+    TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmux new && exit
 fi
 
 [[ -s "/home/tgeng/.gvm/scripts/gvm" ]] && source "/home/tgeng/.gvm/scripts/gvm"
-
-unset GREP_OPTIONS
 gvm use 1.4
-

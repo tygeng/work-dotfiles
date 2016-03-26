@@ -5,23 +5,33 @@ import os
 import sys
 import zipfile
 
-print "Processing File " + sys.argv[1]
 
 for zip_file in sys.argv[1:]:
+    print "Processing File {}".format(zip_file)
+    if not zip_file.endswith(".zip"):
+        continue
     try:
         file = zipfile.ZipFile(zip_file, "r")
-        for name in file.namelist():
-            utf8name = None
-            for coding in ['gbk','gb2312', 'big5', 'cp932', 'iso2022_jp', 'euc_jp', 'shift_jis']:
+        selected_coding = None
+        for coding in ['utf8', 'gbk', 'gb2312', 'big5', 'cp932', 'iso2022_jp', 'euc_jp', 'shift_jis']:
+            failed = False
+            for name in file.namelist():
                 try:
-                    utf8name = name.decode('gbk')
-                    break
+                    name.decode(coding)
                 except UnicodeDecodeError:
-                    pass
+                    failed = True
+                    break
+            if not failed:
+                selected_coding = coding
 
-            if utf8name == None:
-                print "Failed decoding name %s in %s" % (name, zip_file)
-                continue
+        if selected_coding is None:
+            print "Cannot find a valid coding for {}. Skipped".format(zip_file)
+            continue
+        print "Use coding {}".format(selected_coding)
+
+        zip_file = os.path.basename(zip_file)[:-4]
+        for name in file.namelist():
+            utf8name = os.path.join(zip_file, name.decode(selected_coding))
 
             print "Extracting " + utf8name
             pathname = os.path.dirname(utf8name)
