@@ -2,7 +2,7 @@
 pacmd set-default-sink 0
 
 # Desktop environment
-gnome-settings-daemon &
+unity-settings-daemon &
 gnome-keyring-daemon
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 nm-applet &

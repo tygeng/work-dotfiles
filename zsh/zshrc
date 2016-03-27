@@ -83,7 +83,6 @@ alias open=gvfs-open
 pathto(){
     echo -n $PWD/$1 | xclip -selection clipboard
 }
-alias todo='vim ~/todo'
 
 sj(){
     if [[ $PWD =~ \/javatests\/ ]]; then
@@ -126,12 +125,16 @@ alias mysqlg=/google/data/ro/projects/speckle/mysql
 alias gits='git status'
 alias gitc='git checkout'
 alias gitco='git commit -am'
+alias vim='TERM=screen-256color nvim'
+alias nvim='TERM=screen-256color nvim'
+alias gnvim='nyaovim'
+alias todo='vim ~/todo.md'
 
 # PERL_MB_OPT="--install_base \"/home/tgeng/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/tgeng/perl5"; export PERL_MM_OPT;
 
 if [ -z $TMUX ]; then
-    TERM=screen-256color-bce tmux attach-session -t dropdown || TERM=screen-256color-bce tmux new-session -s dropdown && exit
+    tmux -2 attach-session -t dropdown || tmux -2 new-session -s dropdown && exit
 fi
 
 [[ -s "/home/tgeng/.gvm/scripts/gvm" ]] && source "/home/tgeng/.gvm/scripts/gvm"
