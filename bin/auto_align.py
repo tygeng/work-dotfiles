@@ -1,0 +1,1 @@
+/home/tgeng/dev/katsu/shm/annotator/scripts/auto_align.py
