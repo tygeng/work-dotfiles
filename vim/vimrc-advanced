@@ -2,11 +2,11 @@ if !has("gui_running")
     set t_Co=256
 else
     let g:Powerline_symbols = 'fancy'
-    set guifont=Hack\ 10 
+    set guifont=Hack\ 10
 endif
 "==========
 "" adjust configuration for such hostile environment as Windows {{{
-if has("mac") 
+if has("mac")
     set clipboard=unnamed
     map [A <Up>
     map [B <Down>
@@ -47,7 +47,7 @@ nnoremap gt :!ctags -R --fields=+iaS --extra=+f --exclude=.git --exclude=log *<C
 noremap gb <C-t>
 noremap gd <C-]>
 function GenerateTernProjectFile()
-    if filereadable('./.tern-project') 
+    if filereadable('./.tern-project')
         echo '.tern-project already exist!'
     else
         silent execute '!cp ~/.vim/templates/.tern-project ./ &' | redraw!
@@ -55,8 +55,8 @@ function GenerateTernProjectFile()
     endif
 endfunction
 function SetUpTernJS()
-    nnoremap gd :TernDef<CR>  
-    nnoremap gt :TernType<CR>  
+    nnoremap gd :TernDef<CR>
+    nnoremap gt :TernType<CR>
     nnoremap R :TernRename<CR>
     nnoremap gr :TernRefs<CR>
     nnoremap gD :TernDoc<CR>
@@ -70,8 +70,9 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 " NerdTree
-nnoremap t :NERDTree %<CR>
-let NERDTreeQuitOnOpen=1
+nnoremap t :NERDTreeToggle<CR>
+nnoremap <M-t> :NERDTree %<CR>
+let NERDTreeQuitOnOpen=0
 let NERDTreeWinSize=48
 let NERDTreeMouseMode=3
 " YouCompleteMe
@@ -93,7 +94,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
             \ 'active_filetypes': ['c'],
             \ 'passive_filetypes': ["tex"] }
 
-set statusline=%<\ %n:%f\ %m%r%y%{SyntasticStatuslineFlag()}%=(%l\ ,\ %c%V)\ Total:\ %L\ 
+set statusline=%<\ %n:%f\ %m%r%y%{SyntasticStatuslineFlag()}%=(%l\ ,\ %c%V)\ Total:\ %L\
 " work around for the location list bug
 autocmd FileType c,cpp,objc nnoremap ZQ :lcl<bar>q!<CR>
 vmap ZQ vZQ

@@ -1,0 +1,4 @@
+#!/bin/bash
+/usr/bin/java_fix_import.py --fix $@
+/home/build/google3/tools/java/sort_java_imports.py $@
+/usr/bin/java-format $@

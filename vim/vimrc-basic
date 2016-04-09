@@ -53,6 +53,32 @@ vnoremap k gk
 vnoremap gj j
 vnoremap gk k
 
+nnoremap <M-j> 3<C-w>j
+nnoremap <M-k> 3<C-w>k
+nnoremap <M-h> 3<C-w>h
+nnoremap <M-l> 3<C-w>l
+nnoremap <M-J> 3<C-w>J
+nnoremap <M-K> 3<C-w>K
+nnoremap <M-H> 3<C-w>H
+nnoremap <M-L> 3<C-w>L
+nnoremap <M-=> 3<C-w>+
+nnoremap <M--> 3<C-w>-
+nnoremap <M-.> 3<C-w>.
+nnoremap <M-,> 3<C-w>,
+
+inoremap <M-j> 3<C-w>j
+inoremap <M-k> 3<C-w>k
+inoremap <M-h> 3<C-w>h
+inoremap <M-l> 3<C-w>l
+inoremap <M-J> 3<C-w>J
+inoremap <M-K> 3<C-w>K
+inoremap <M-H> 3<C-w>H
+inoremap <M-L> 3<C-w>L
+inoremap <M-+> 3<C-w>=
+inoremap <M--> 3<C-w>-
+inoremap <M-.> 3<C-w>.
+inoremap <M-,> 3<C-w>,
+
 nnoremap <C-Tab> <C-w>w
 vnoremap <C-Tab> <C-w>w
 inoremap <C-Tab> <C-w>w
@@ -110,9 +136,11 @@ map <S-F8> :vsp<CR>:wincmd l<CR>:exec("tag ".expand("<cword>"))<CR>:wincmd h<CR>
 nmap <F9> :w<CR>:FSHere<CR>
 imap <F9> <C-o><F9>
 map <S-F9> :w<CR>:vsp<CR>:FSRight<CR>:wincmd h<CR>
-nnoremap <C-s> :wa<CR>
+nnoremap <silent> <C-s> :wa<CR>
 inoremap <C-s> <Esc>:w<CR>
 vnoremap <C-s> v:w<CR>
+nnoremap zz mz1z=`z
+inoremap <C-g> <Esc>[s1z=`]a
 "=========================
 nnoremap U :redo<CR>
 nnoremap w viw
@@ -126,11 +154,11 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 " v_P for non swap pasting
 vnoremap P pgvy
 "=========================
-nnoremap Q <nop>
+nnoremap Q {gq}
 vnoremap Q gq
 "=========================
 colorscheme molokai_mod
-set guioptions=  
+set guioptions=
 set cul
 syntax sync minlines=64
 set regexpengine=1
@@ -154,4 +182,4 @@ vmap <Right> *
 vmap <Left> #
 nmap <M-a> ggVGy
 
-autocmd FileType c,cpp,java,php,python,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e

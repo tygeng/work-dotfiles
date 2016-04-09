@@ -50,6 +50,7 @@ print $result
 PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
 setopt promptsubst
 setopt menu_complete
+setopt complete_aliases
 #export LANG=C
 
 # zsh completion
@@ -74,7 +75,7 @@ function adb() {
   EMU_DEPS=/google/data/ro/teams/mobile_eng_prod/emu/live/google3/
   ANDROID_SDK=${EMU_DEPS}/third_party/java/android/android_sdk_linux/
   EMU_SUPPORT=${EMU_DEPS}/tools/android/emulator/support/
-  ANDROID_ADB=${ANDROID_SDK}/platform-tools/adb 
+  ANDROID_ADB=${ANDROID_SDK}/platform-tools/adb
   ANDROID_ADB=${ANDROID_ADB} $EMU_SUPPORT/adb.turbo "$@"
 }
 
@@ -145,15 +146,59 @@ source /etc/bash_completion.d/g4d
 git() { if [[ $1 == 'merge' ]]; then echo 'Use git5 merge, not git merge. git merge does not understand how to merge the READONLY link and it can corrupt your branch, so stay away from it.  type "unset -f git" to remove this warning'; else command git "$@"; fi; }
 
 alias gitc='git checkout'
-alias gitco='git commit'
+gitcfb() {
+    if ! git checkout -b $1; then
+        read -q "REPLY?Do you want to drop branch '$1'? (y/N) "
+        case $REPLY in
+            [yY][eE][sS]|[yY])
+                echo
+                git branch -D $1 && git checkout -b $1
+                ;;
+            *)
+                echo "Aborted."
+                ;;
+        esac
+    fi
+}
+gitco() {
+    if [ -z "$1" ]; then
+        git commit -a --amend --no-edit
+    else
+        git commit -am $1
+    fi
+}
+gitx() {
+    git5 export -g --commit-message "update"
+}
+gitcox() {
+    if [ -z "$1" ] || [ -n "$2"  ]; then
+        echo "Must provide a commit message."
+        return 1
+    fi
+    if git5 pending | grep '(current)' > /dev/null; then
+        echo "Found existing CITC client."
+        git5 drop
+    fi
+    if  git5 pending | grep '(current)' > /dev/null; then
+        echo "Nothing is exported."
+    else
+        git5 export -d "$1" --commit-message "$1"
+    fi
+}
 alias gits='git status'
 alias gitb='git branch'
 alias git5s='git5 status'
 alias git5d='git5 diff --stat'
-alias git5x='git5 export -g'
 alias git5cln='git5 cleanup'
 alias bclnr='build_cleaner'
+alias bclnrall='build_cleaner :all & sj ; build_cleaner :all ; fg'
 alias findcells=/google/data/ro/teams/org-tools-sre/findcells
+alias gcloud='/google/data/ro/teams/oneplatform/opgcloud'
+alias vim='TERM=screen-256color nvim'
+
+cdt() {
+    cd $1 2> /dev/null || cd $(dirname $1)
+}
 
 if [ -n "$TMUX_RUNNING" ]; then
 else
