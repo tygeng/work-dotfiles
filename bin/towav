@@ -1,8 +1,16 @@
 #!/bin/bash
 
+if ! $(hash avconv 2> /dev/null); then
+    echo "Please install avconv. Maybe run 'sudo apt-get install libav-tools'?"
+    exit
+fi
+
 for file in "$@"; do
     new_file="${file%.*}.wav"
     echo '-->' "${new_file}"
-    echo y | avconv -i "${file}" "${new_file}" 2>/dev/null
-    rm "${file}"
+    if [[ $file =~ \.(mp3)$ ]]; then
+      mpg123 -w $new_file $file
+    else
+      echo y | avconv -i "${file}" "${new_file}" 2> /dev/null
+    fi
 done
