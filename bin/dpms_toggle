@@ -6,8 +6,8 @@ DPMSTEST=$(xset -q | grep "  DPMS is Enabled")
 
 if [[ "$XBLANKTEXT" -gt 0 ]] || [[ -n "$DPMSTEST" ]]; then
     xset s off; xset -dpms
-    notify-send "Powersaving Disabled"
+    notify-send -t 2 "Powersaving Disabled"
 else
     xset s on; xset +dpms
-    notify-send "Powersaving Enabled"
+    notify-send -t 2 "Powersaving Enabled"
 fi
