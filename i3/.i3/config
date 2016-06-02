@@ -33,8 +33,8 @@ exec compton
 exec ~/.dropbox-dist/dropboxd
 # exec kupfer
 # exec TERM=screen-256color-bce tilda
-bindsym $mod+equal exec amixer -D pulse sset Master 5%+
-bindsym $mod+minus exec amixer -D pulse sset Master 5%-
+bindsym $mod+equal exec ~/bin/pulse-audio-volume-control.sh 6 up
+bindsym $mod+minus exec ~/bin/pulse-audio-volume-control.sh 6 down
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # bindsym XF86ScreenSaver exec sudo pm-suspend
@@ -147,19 +147,19 @@ workspace 10:Critique output DP-0
 workspace Temp output DP-0
 workspace Diff output DP-0
 
-workspace 11 output HDMI-0
-workspace 12 output HDMI-0
-workspace 13 output HDMI-0
-workspace 14 output HDMI-0
-workspace 15 output HDMI-0
-workspace 16 output HDMI-0
-workspace 17 output HDMI-0
-workspace 18 output HDMI-0
-workspace 19:Buganizer output HDMI-0
-workspace 20:Calendar output HDMI-0
-workspace 21:Inbox output HDMI-0
-workspace 22:Monitor output HDMI-0
-workspace O output HDMI-0
+workspace 11 output DVI-D-0
+workspace 12 output DVI-D-0
+workspace 13 output DVI-D-0
+workspace 14 output DVI-D-0
+workspace 15 output DVI-D-0
+workspace 16 output DVI-D-0
+workspace 17 output DVI-D-0
+workspace 18 output DVI-D-0
+workspace 19:Buganizer output DVI-D-0
+workspace 20:Calendar output DVI-D-0
+workspace 21:Inbox output DVI-D-0
+workspace 22:Monitor output DVI-D-0
+workspace O output DVI-D-0
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -217,7 +217,7 @@ bindsym $mod+Shift+o move container to workspace O
 
 bindsym $mod+m workspace Music
 bindsym $mod+Shift+m move container to workspace Music
-workspace Music output HDMI-0
+workspace Music output DVI-D-0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -243,7 +243,7 @@ bindsym Mod4+Control+l resize grow   right 5 px or 5 ppt
 mouse_warping none
 bar {
         status_command i3status
-#         tray_output primary
+        tray_output primary
         font pango:DejaVu Sans Mono 11
 }
 

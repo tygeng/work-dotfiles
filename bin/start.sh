@@ -1,9 +1,6 @@
 #!/bin/bash
-pacmd set-default-sink 0
-
 # Desktop environment
 unity-settings-daemon &
-gnome-keyring-daemon
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 nm-applet &
 # xautolock -time 30 -locker "gnome-screensaver-command --lock" &
@@ -13,7 +10,7 @@ git annex assistant --autostart
 # Cleanup unnecessary files
 rm -rf $HOME/.local/share/Trash
 
-sleep 2 && exec feh --bg-fill ~/Pictures/wallpaper.jpg
+sleep 1 && exec feh --bg-fill ~/Pictures/wallpaper.jpg
 sleep 3 && ~/bin/kbd
 # xinput disable "SynPS/2 Synaptics TouchPad"
 xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Velocity Scaling" 250
