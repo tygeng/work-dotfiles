@@ -20,10 +20,10 @@ fi
 
 SINK=$1
 STEP=5
-MAXVOL=65537 # let's just assume this is the same all over
+MAXVOL=65535 # let's just assume this is the same all over
 
 getperc(){
-    VOLPERC=`pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'`
+    VOLPERC=`pactl list sinks | grep "Sink #$SINK" -A9 | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'`
 }
 
 getperc;

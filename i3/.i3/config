@@ -33,8 +33,8 @@ exec compton
 exec ~/.dropbox-dist/dropboxd
 # exec kupfer
 # exec TERM=screen-256color-bce tilda
-bindsym $mod+equal exec ~/bin/pulse-audio-volume-control.sh 6 up
-bindsym $mod+minus exec ~/bin/pulse-audio-volume-control.sh 6 down
+bindsym $mod+equal exec ~/bin/pulse-audio-volume-control.sh 4 up
+bindsym $mod+minus exec ~/bin/pulse-audio-volume-control.sh 4 down
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # bindsym XF86ScreenSaver exec sudo pm-suspend
