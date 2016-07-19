@@ -1,4 +1,5 @@
 inoremap jk <Esc>
+inoremap kj <Esc>
 
 nnoremap <C-a> ^
 nnoremap <C-e> $
@@ -33,6 +34,8 @@ nnoremap J :action EditorJoinLines<CR>
 nnoremap R :action RenameElement<CR>
 nnoremap s :action CommentByLineComment<CR>
 nnoremap t :action ToggleLineBreakpoint<CR>
+nnoremap Q :action com.andrewbrookins.idea.wrap.WrapAction<CR>
+vnoremap Q :<Backspace><Backspace><Backspace><Backspace><Backspace>action com.andrewbrookins.idea.wrap.WrapAction<CR>
 set ignorecase
 set smartcase
 set number

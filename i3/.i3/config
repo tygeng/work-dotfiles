@@ -31,17 +31,17 @@ floating_modifier $mod
 bindsym Mod1+q kill
 bindsym Mod1+Tab focus left
 exec autokey-gtk
-exec feh --bg-fill ~/Pictures/eva.jpg
+exec feh --bg-fill ~/Pictures/luckystar.jpg
 exec compton
 # exec kupfer
 exec synapse
 exec TERM=screen-256color-bce tilda
-bindsym $mod+equal exec amixer -q set Master 2dB+ unmute
-bindsym $mod+minus exec amixer -q set Master 2dB- unmute
+bindsym $mod+equal exec amixer -q set Master 1dB+ unmute
+bindsym $mod+minus exec amixer -q set Master 1dB- unmute
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # bindsym XF86ScreenSaver exec sudo pm-suspend
-bindsym Pause exec i3lock -d
+bindsym Pause exec ~/bin/lock.sh
 # bindsym $mod+s split h; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
 # bindsym $mod+Shift+s split v; exec SHELL=sh urxvt -name desktop-ssh -e ssh tgeng-linux.kir.corp.google.com
 
@@ -54,7 +54,7 @@ bindsym $mod+grave exec --no-startup-id fetchotp -x
 bindsym $mod+Return split h; exec terminator
 bindsym $mod+Shift+Return split v; exec terminator
 for_window [window_role="pop-up"] floating enable
-for_window [class="Tilda"] floating enable border none move absolute position 0px 0px
+for_window [class="Tilda"] floating enable border none move absolute  position 0 px 0 px
 for_window [instance="desktop-ssh"] border none
 for_window [title="^Application Finder"] floating enable
 for_window [title="^qtcreator"] floating enable
@@ -70,7 +70,7 @@ for_window [title="^swing"] floating enable
 for_window [title="^xfce4-notifyd$"] floating enable border none
 for_window [title="^Yakuake"] floating enable
 for_window [class="^google-chrome" ] border none
-for_window [title="^Hangouts" ] border 1pixel move absolute position 1920 px 700 px
+for_window [instance="crx_nckgahadagoaajjgafhacjanaoiihapd" ] move absolute position 1920 px 700 px border normal
 for_window [title="^Inbox" ] floating disable
 assign [title="^Inbox"] → 21:Inbox
 for_window [title="Calendar$" ] floating disable

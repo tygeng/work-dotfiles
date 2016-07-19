@@ -98,7 +98,7 @@ pathto(){
 bpath(){
     echo -n $PWD$1 | perl -pe 's|^.*?google3/?(.*)|//\1|'| xclip -selection clipboard
 }
-alias todo='vim ~/todo'
+alias todo='vim ~/todo.md'
 
 sj(){
     if [[ $PWD =~ \/javatests\/ ]]; then
@@ -117,6 +117,17 @@ sj(){
             echo "Corresponding javatests directory doesn't exist. Created for you."
             mkdir -p $newPWD && cd $newPWD || echo Cannot create directory $newPWD
         fi
+    fi
+    newPWD=''
+}
+sp(){
+    if [[ $PWD =~ \/home\/tgeng\/git\/.+ ]]; then
+      newPWD=`echo $PWD | sed -r "s|/git/[^/]+|/git/$1|"`
+      if [ -d "$newPWD" ]; then
+          cd $newPWD
+      else
+          echo "Corresponding directory under project $1 does not exist."
+      fi
     fi
     newPWD=''
 }
@@ -191,13 +202,39 @@ alias git5s='git5 status'
 alias git5d='git5 diff --stat'
 alias git5cln='git5 cleanup'
 alias bclnr='build_cleaner'
-alias bclnrall='build_cleaner :all & sj ; build_cleaner :all ; fg'
+# alias bclnrall='build_cleaner :all & sj ; build_cleaner :all ; fg'
 alias findcells=/google/data/ro/teams/org-tools-sre/findcells
 alias gcloud='/google/data/ro/teams/oneplatform/opgcloud'
-alias vim='TERM=screen-256color nvim'
+alias nvim='TERM=xterm-256color nvim'
+alias model-t='/google/data/ro/teams/model-t/model-t'
 
+bclnrall() {
+  cdg
+  targets=($(gits --porcelain | cut -d ' ' -f 3 | sed 's|^google3/||' |sed 's|/[^/]\+$|:all|' | sort | uniq))
+  for target in $targets; do
+    echo "Clean up $target"
+    build_cleaner $target &
+  done
+  cd -
+  for target in $targets; do
+    fg
+  done
+}
 cdt() {
     cd $1 2> /dev/null || cd $(dirname $1)
+}
+vimb() {
+  if [ -d $1 ]; then
+    dir=$1
+  else
+    dir=$(dirname $1)
+  fi
+  if ! [ -d $dir ]; then
+    echo "No valid directory specified"
+    return 1
+  fi
+  build_path="$dir/BUILD"
+  vim $build_path
 }
 
 if [ -n "$TMUX_RUNNING" ]; then
