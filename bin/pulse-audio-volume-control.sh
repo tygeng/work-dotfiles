@@ -114,13 +114,13 @@ fi
 pacmd set-sink-volume $SINK $VOLUME > /dev/null
 
 
-if [ "$VOLPERC" = "0" ]; then
+if [ "$VOLSTEP" = "0" ]; then
         icon_name="notification-audio-volume-off"
     else
-        if [ "$VOLPERC" -lt "33" ]; then
+        if [ "$VOLSTEP" -lt "33" ]; then
             icon_name="notification-audio-volume-low"
         else
-            if [ "$VOLPERC" -lt "67" ]; then
+            if [ "$VOLSTEP" -lt "67" ]; then
                 icon_name="notification-audio-volume-medium"
             else
                 icon_name="notification-audio-volume-high"
@@ -128,4 +128,4 @@ if [ "$VOLPERC" = "0" ]; then
         fi
 fi
 
-notify-send " " -i $icon_name -h int:value:$VOLPERC -h string:synchronous:volume
+notify-send " " -i $icon_name -h int:value:$VOLSTEP -h string:synchronous:volume
