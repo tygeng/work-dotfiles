@@ -36,13 +36,13 @@ export PROJECT_HOME=$HOME/Devel
 source ~/.zsh/pinyin-completion/shell/pinyin-comp.zsh
 
 function custom_pwd () {
-    tokens_string=$result`echo $PWD|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/google3\/\?\(.*\)/\1 \2 \3/'`
-    eval "tokens=($tokens_string)"
-    if [ -n "${tokens[2]}" ]; then
-        result="%{$fg_bold[blue]%}${tokens[1]}%{$reset_color%}(%{$fg_bold[magenta]%}${tokens[2]}%{$reset_color%}) google3: %{$fg_bold[yellow]%}//${tokens[3]}"
-    else
+#     tokens_string=$result`echo $PWD|sed 's/^\/google\/src\/cloud\/\([^/]\+\)\/\([^/]\+\)\/google3\/\?\(.*\)/\1 \2 \3/'`
+#     eval "tokens=($tokens_string)"
+#     if [ -n "${tokens[2]}" ]; then
+#         result="%{$fg_bold[blue]%}${tokens[1]}%{$reset_color%}(%{$fg_bold[magenta]%}${tokens[2]}%{$reset_color%}) google3: %{$fg_bold[yellow]%}//${tokens[3]}"
+#     else
         result="%~"
-    fi
+#     fi
 print $result
 }
 PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
