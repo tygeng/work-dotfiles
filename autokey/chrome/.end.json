@@ -1,5 +1,5 @@
 {
-    "usageCount": 331, 
+    "usageCount": 332, 
     "omitTrigger": false, 
     "prompt": false, 
     "description": "end", 
@@ -23,7 +23,7 @@
     "showInTrayMenu": false, 
     "matchCase": false, 
     "filter": {
-        "regex": "google-chrome.google-chrome", 
+        "regex": ".*.google-chrome", 
         "isRecursive": false
     }, 
     "type": "phrase", 

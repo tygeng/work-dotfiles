@@ -20,12 +20,12 @@ source $BASE_DIR/.dotfiles/zsh/oh-my-zsh/plugins/per-directory-history/per-direc
 # cd ..
 # echo "$LAST_DIR" > ./$LAST_DIR_FILE
 # }
-# go-up-dir-action () { 
+# go-up-dir-action () {
 #     zle push-line; LBUFFER='go-up-dir'; zle accept-line;
 # }
 # zle -N go-up-dir-action
 # bindkey 'p' go-up-dir-action
-# 
+#
 # LAST_DIR_FILE='.last_dir_entered'
 # go-down-dir() {
 # if [[ -e $LAST_DIR_FILE ]]; then
@@ -34,7 +34,7 @@ source $BASE_DIR/.dotfiles/zsh/oh-my-zsh/plugins/per-directory-history/per-direc
 #     echo No more directories.
 # fi
 # }
-# go-down-dir-action () { 
+# go-down-dir-action () {
 #     zle push-line; LBUFFER='go-down-dir'; zle accept-line;
 # }
 # zle -N go-down-dir-action
@@ -56,7 +56,7 @@ HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
 setopt HIST_EXPIRE_DUPS_FIRST INC_APPEND_HISTORY hist_ignore_alldups EXTENDED_HISTORY share_history
-#PATH="/usr/java/jdk1.7.0_09/bin:$PATH:/home/tony1/bin:." 
+#PATH="/usr/java/jdk1.7.0_09/bin:$PATH:/home/tony1/bin:."
 alias lgn='ssh tony1@rlogin.cs.vt.edu'
 alias lgng='ssh tony1@tincan6.cs.vt.edu'
 alias P="pwd | tr -d '\n' | xclip"
@@ -79,7 +79,7 @@ um()
     udisks --unmount /dev/sd$1
 }
 cl() {
-    cd $* && ls . 
+    cd $* && ls .
 }
 alias vimdiff='vim -d'
 alias cddl='cl $BASE_DIR'
@@ -106,13 +106,13 @@ fi
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
     'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-ZLS_COLORS="no=00:fi=00:di=01;34:ln=01;36:\ 
-pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:\ 
-or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:\ 
-*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:\ 
-*.z=01;31:*.Z=01;31:*.gz=01;31:*.deb=01;31:\ 
-*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.ppm=01;35:\ 
-*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:\ 
+ZLS_COLORS="no=00:fi=00:di=01;34:ln=01;36:\
+pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:\
+or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:\
+*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:\
+*.z=01;31:*.Z=01;31:*.gz=01;31:*.deb=01;31:\
+*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.ppm=01;35:\
+*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:\
 *.mpg=01;37:*.avi=01;37:*.gl=01;37:*.dl=01;37:"
 # end of zsh completion
 

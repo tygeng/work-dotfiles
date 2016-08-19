@@ -47,7 +47,11 @@ function custom_pwd () {
     fi
 print $result
 }
-PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
+if [ -n "$CUSTOM_PROMPT" ]; then
+  PROMPT=$CUSTOM_PROMPT
+else
+  PROMPT='%{$fg_bold[green]%}%T %{$fg_bold[yellow]%}$(custom_pwd)%b$(git_super_status) %{$fg_bold[green]%}$ %{$reset_color%}'
+fi
 setopt promptsubst
 setopt menu_complete
 setopt complete_aliases
@@ -179,7 +183,10 @@ gitco() {
     fi
 }
 gitx() {
-    git5 export -g --commit-message "update"
+    gitco 'update'
+    buildifier -a -v
+    git5 fix
+    git5 export
 }
 gitcox() {
     if [ -z "$1" ] || [ -n "$2"  ]; then
@@ -193,8 +200,32 @@ gitcox() {
     if  git5 pending | grep '(current)' > /dev/null; then
         echo "Nothing is exported."
     else
-        git5 export -d "$1" --commit-message "$1"
+        gitco "$1"
+        buildifier -a -v
+        git5 fix
+        git5 export -d "$1"
     fi
+}
+gitct() {
+  branch=$(git status | head -n 1 | cut -f 4 -d ' ')
+  working_dirty=''
+  if ! git status | grep 'nothing to commit, working directory clean' > /dev/null; then
+    working_dirty='YES'
+    git stash
+  fi
+  git checkout $1
+  git5 sync
+
+  echo $PWD > ~/.current_pwd
+  export CUSTOM_PROMPT="%{$fg_bold[red]%}[TEMP] $PROMPT"; zsh
+
+  gitx
+  git checkout $branch
+  echo $working_dirty
+  if [ -n "$working_dirty" ]; then
+    echo 'popping stash'
+    git stash pop
+  fi
 }
 alias gits='git status'
 alias gitb='git branch'
@@ -243,3 +274,4 @@ else
   export TERM=xterm-256color
   tmx -2;exit
 fi
+
