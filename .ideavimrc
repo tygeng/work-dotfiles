@@ -36,6 +36,14 @@ nnoremap s :action CommentByLineComment<CR>
 nnoremap t :action ToggleLineBreakpoint<CR>
 nnoremap Q :action com.andrewbrookins.idea.wrap.WrapAction<CR>
 vnoremap Q :<Backspace><Backspace><Backspace><Backspace><Backspace>action com.andrewbrookins.idea.wrap.WrapAction<CR>
+inoremap <M-h> <C-w>h
+vnoremap <M-h> <C-w>h
+nnoremap <M-h> <C-w>h
+cnoremap <M-h> <C-w>h
+inoremap <M-l> <C-w>l
+vnoremap <M-l> <C-w>l
+nnoremap <M-l> <C-w>l
+cnoremap <M-l> <C-w>l
 set ignorecase
 set smartcase
 set number

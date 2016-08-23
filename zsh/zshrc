@@ -185,6 +185,7 @@ gitco() {
 gitx() {
     gitco 'update'
     buildifier -a -v
+    gitco 'buildified'
     git5 fix
     git5 export
 }
@@ -238,6 +239,7 @@ alias findcells=/google/data/ro/teams/org-tools-sre/findcells
 alias gcloud='/google/data/ro/teams/oneplatform/opgcloud'
 alias nvim='TERM=xterm-256color nvim'
 alias model-t='/google/data/ro/teams/model-t/model-t'
+alias vi='vim -u NONE'
 
 bclnrall() {
   cdg
