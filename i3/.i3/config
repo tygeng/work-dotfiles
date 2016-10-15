@@ -69,9 +69,7 @@ for_window [title="^Volume Control"] floating enable
 for_window [title="^swing"] floating enable
 for_window [title="^xfce4-notifyd$"] floating enable border none
 for_window [title="^Yakuake"] floating enable
-for_window [class="^google-chrome" ] border none
-for_window [title="^Inbox" ] floating disable
-assign [title="^Inbox"] → 21:Inbox
+for_window [class="^Google-chrome" ] border none
 for_window [title="Calendar$" ] floating disable
 assign [title="Calendar$"] → 20:Calendar
 for_window [title="Google Docs$" ] floating disable
@@ -79,6 +77,7 @@ for_window [title="Cider$" ] floating disable
 for_window [title="^MATLAB$" ] border none floating enable
 for_window [class="Firefox$" ] border none
 for_window [title="^Terminal$" ] border 1pixel
+for_window [class="Terminator" ] border 1pixel
 for_window [title="^WPS" ] border none
 for_window [title="^synapse" ] border none
 for_window [title="^Merge Revisions" ] move absolute position 0 px 0 px
@@ -88,7 +87,7 @@ for_window [title="^Page\(s\) Unresponsive" ] floating enable
 
 assign [class="Gmusicbrowser"] 9
 assign [title="^Comparing [^ ]* with [^ ]"] Diff
-for_window [instance="crx_ljclpkphhpbpinifbeabbhlfddcpfdde" ] floating enable move absolute position 1920 px 755 px resize shrink down 760 px
+for_window [instance="crx_ljclpkphhpbpinifbeabbhlfddcpfdde" ] floating enable move absolute position 3440 px 775 px resize set 400 px 400 px
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down

@@ -20,7 +20,7 @@
     ], 
     "showInTrayMenu": false, 
     "filter": {
-        "regex": "cider-staging.google-chrome", 
+        "regex": "cider-staging.Google-chrome", 
         "isRecursive": false
     }, 
     "type": "script", 

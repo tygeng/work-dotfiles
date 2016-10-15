@@ -161,7 +161,11 @@ source /etc/bash_completion.d/g4d
 git() { if [[ $1 == 'merge' ]]; then echo 'Use git5 merge, not git merge. git merge does not understand how to merge the READONLY link and it can corrupt your branch, so stay away from it.  type "unset -f git" to remove this warning'; else command git "$@"; fi; }
 
 alias gitc='git checkout'
-gitcfb() {
+gitcb() {
+    if [ "$1" = 'main' ]; then
+      echo 'Cannot overwrite main branch!'
+      return
+    fi
     if ! git checkout -b $1; then
         read -q "REPLY?Do you want to drop branch '$1'? (y/N) "
         case $REPLY in
@@ -174,6 +178,29 @@ gitcfb() {
                 ;;
         esac
     fi
+}
+gitcfb() {
+    if [ "$1" = 'main' ]; then
+      echo 'Cannot overwrite main branch!'
+      return
+    fi
+  if ! git status | grep 'nothing to commit, working directory clean' > /dev/null; then
+    echo 'You must commit all changes before doing this operation.'
+  else
+    oldpwd=$PWD
+    paths=$(realpath ${@:2})
+    if [ $? = "0" ]; then
+      branch=$(git status | head -n 1 | cut -f 4 -d ' ')
+      if [ "$1" = "$branch" ]; then
+        echo 'Cannot overwrite current branch!'
+        return
+      fi
+      cdg
+      git checkout main && git5 sync && echo $paths | xargs -d '\n' git checkout $branch && gitcb $1 && cd $oldpwd
+    else
+      echo 'Usage: gitcfb <branch-name> <files-to-checkout>'
+    fi
+  fi
 }
 gitco() {
     if [ -z "$1" ]; then
@@ -214,20 +241,22 @@ gitct() {
     working_dirty='YES'
     git stash
   fi
-  git checkout $1
-  git5 sync
+  if git checkout $1 && git5 sync; then
 
-  echo $PWD > ~/.current_pwd
-  export CUSTOM_PROMPT="%{$fg_bold[red]%}[TEMP] $PROMPT"; zsh
+    echo $PWD > ~/.current_pwd
+    export CUSTOM_PROMPT="%{$fg_bold[red]%}[TEMP] $PROMPT"; zsh
 
-  gitx
-  git checkout $branch
-  echo $working_dirty
-  if [ -n "$working_dirty" ]; then
-    echo 'popping stash'
-    git stash pop
+    gitx
+    git checkout $branch
+    echo $working_dirty
+    if [ -n "$working_dirty" ]; then
+      echo 'popping stash'
+      git stash pop
+    fi
   fi
 }
+
+export JAVABIN=/usr/local/buildtools/java/jdk/bin/java
 alias gits='git status'
 alias gitb='git branch'
 alias git5s='git5 status'

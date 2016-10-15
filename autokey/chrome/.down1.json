@@ -24,7 +24,7 @@
     "showInTrayMenu": false, 
     "matchCase": false, 
     "filter": {
-        "regex": ".*\\.google-chrome", 
+        "regex": ".*\\.Google-chrome", 
         "isRecursive": false
     }, 
     "type": "phrase", 
