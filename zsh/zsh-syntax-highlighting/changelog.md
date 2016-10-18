@@ -1,9 +1,97 @@
-up to 952a97dbc99a54bd86141b7a57625e748941a937
+up to cef49752fd0e
 
 
+
+
+# Changes in version 0.5.0
+
+
+## Added highlighting of:
+
+- 'pkexec' (a precommand).
+  (#248, 4f3910cbbaa5)
+
+- Aliases that cannot be defined normally nor invoked normally (highlighted as an error)
+  (#263 (in part), 28932316cca6)
+
+- The `isearch` and `suffix` [`$zle_highlight` settings][zshzle-Character-Highlighting].
+  (79e4d3d12405; requires zsh 5.3 for `$ISEARCH_ACTIVE` / `$SUFFIX_ACTIVE` support)
+
+[zshzle-Character-Highlighting]: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
+
+
+## Fixed highlighting of:
+
+- Command separator tokens in syntactically-invalid positions.
+  (09c4114eb980)
+
+- Redirections with a file descriptor number at command word.
+  (#238 (in part), 73ee7c1f6c4a)
+
+- The `select` prompt, `$PS3`.
+  (#268, 451665cb2a8b)
+
+- Values of variables in `vared`.
+  (e500ca246286)
+
+- `!` as an argument (neither a history expansion nor a reserved word).
+  (4c23a2fd1b90)
+
+
+## API changes (for highlighter authors):
+
+- New interface `_zsh_highlight_add_highlight`.
+  (341a3ae1f015, c346f6eb6fb6)
+
+
+## Developer-visible changes:
+
+- Add `make quiet-test`.
+  (9b64ad750f35)
+
+- test harness: Better quote replaceables in error messages.
+  (30d8f92df225)
+
+- test harness: Fix exit code for XPASS.
+  (bb8d325c0cbd)
+
+- tests: Specify the style key, not its value, in test expectations.
+  (a830613467af; see also its successor 089329660bb3)
+
+- tests: Add the "NONE" expectation.
+  (4da9889d1545)
+
+- Create [HACKING.md](HACKING.md).
+
+
+## Other changes:
+
+- Under zsh≤5.2, widgets whose names start with a `_` are no longer excluded
+  from highlighting.
+  (ed33d2cb1388; reverts part of 186d80054a40 which was for #65)
+
+- Under zsh≤5.2, widgets implemented by a function named after the widget are
+  no longer excluded from highlighting.
+  (487b122c480d; reverts part of 776453cb5b692)
+
+- Under zsh≤5.2, shell-unsafe widget names can now be wrapped.
+  (#278, 6a634fac9fb9, et seq)
+
+- Correct some test expectations.
+  (78290e043bc5)
+
+- `zsh-syntax-highlighting.plugin.zsh`: Convert from symlink to plain file
+  for msys2 compatibility.
+  (#292, d4f8edc9f3ad)
 
 
 # Changes in version 0.4.1
+
+## Fixes:
+
+- Arguments to widgets were not properly dash-escaped.  Only matters for widgets
+  that take arguments (i.e., that are invoked as `zle ${widget} -- ${args}`).
+  (282c7134e8ac, reverts c808d2187a73)
 
 
 # Changes in version 0.4.0
@@ -107,7 +195,7 @@ up to 952a97dbc99a54bd86141b7a57625e748941a937
   (57624bb9f64b)
 
 - widgets wrapping: Don't add '--' when invoking widgets.
-  (c808d2187a73)
+  (c808d2187a73) [_reverted in 0.4.1_]
 
 - Refresh highlighting upon `accept-*` widgets (`accept-line` et al).
   (59fbdda64c21)
