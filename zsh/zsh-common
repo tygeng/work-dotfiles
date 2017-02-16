@@ -144,17 +144,11 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey  history-substring-search-up
 bindkey  history-substring-search-down
 # Setup zsh-autosuggestions
-source $BASE_DIR/.dotfiles/zsh/zsh-autosuggestions/autosuggestions.zsh
-
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
+source $BASE_DIR/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive)
 bindkey '^T' autosuggest-toggle
-export AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=7'
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=red,fg=white,bold'
 alias gentag='ctags -R --fields=+iaS --extra=+f --exclude=.git --exclude=log *'

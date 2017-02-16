@@ -184,13 +184,13 @@ gitcfb() {
       echo 'Cannot overwrite main branch!'
       return
     fi
-  if ! git status | grep 'nothing to commit, working directory clean' > /dev/null; then
+  if ! git status | grep 'nothing to commit, working tree clean' > /dev/null; then
     echo 'You must commit all changes before doing this operation.'
   else
     oldpwd=$PWD
     paths=$(realpath ${@:2})
     if [ $? = "0" ]; then
-      branch=$(git status | head -n 1 | cut -f 4 -d ' ')
+      branch=$(git status | head -n 1 | cut -f 3 -d ' ')
       if [ "$1" = "$branch" ]; then
         echo 'Cannot overwrite current branch!'
         return
@@ -235,16 +235,16 @@ gitcox() {
     fi
 }
 gitct() {
-  branch=$(git status | head -n 1 | cut -f 4 -d ' ')
+  branch=$(git status | head -n 1 | cut -f 3 -d ' ')
   working_dirty=''
-  if ! git status | grep 'nothing to commit, working directory clean' > /dev/null; then
+  if ! git status | grep 'nothing to commit, working tree clean' > /dev/null; then
     working_dirty='YES'
     git stash
   fi
-  if git checkout $1 && git5 sync; then
+  if git checkout $1; then
 
     echo $PWD > ~/.current_pwd
-    export CUSTOM_PROMPT="%{$fg_bold[red]%}[TEMP] $PROMPT"; zsh
+    export CUSTOM_PROMPT="%{$fg_bold[red]%}[TEMP] $PROMPT"; zsh -is eval git5 sync
 
     gitx
     git checkout $branch
@@ -272,7 +272,7 @@ alias vi='vim -u NONE'
 
 bclnrall() {
   cdg
-  targets=($(gits --porcelain | cut -d ' ' -f 3 | sed 's|^google3/||' |sed 's|/[^/]\+$|:all|' | sort | uniq))
+  targets=($(git5 diff --name-only | sed 's|^google3/||' |sed 's|/[^/]\+$|:all|' | sort | uniq))
   for target in $targets; do
     echo "Clean up $target"
     build_cleaner $target &
@@ -306,3 +306,11 @@ else
   tmx -2;exit
 fi
 
+# execute script if needed
+if [[ $1 == eval ]]
+then
+    "$@"
+set --
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
